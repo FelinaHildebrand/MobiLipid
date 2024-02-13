@@ -28,6 +28,9 @@ library(DT)
 library(webshot)
 library(knitr)
 
+# Init Step to make sure that the dependencies are loaded
+htmltools::tagList(datatable(cars))
+
 # Import U13C labeled lipid CCS library
 U13C_CCS_library <- tk_choose.files(caption = "Import CSV file of U13C labeled lipid CCS library:", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
 U13C_CCS_library <- fread(U13C_CCS_library)
@@ -38,9 +41,6 @@ if (!(exists("data_import"))) {
   data_import <- tk_choose.files(caption = "Data import (measured data as CSV file):", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
 }
 data_import <- fread(data_import)
-  
-# Init Step to make sure that the dependencies are loaded
-htmltools::tagList(datatable(cars))
 
 if (!(exists("folder_path"))) {
   folder_path <- tk_choose.dir(caption = "Select the folder, where the R markdown is saved:")
@@ -87,7 +87,7 @@ CCS_bias_plot <-
 
 results <- list()
 report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "Mz", "IMS_value", "CCS", "U13C_DTCCS", "CCS_bias")]
-fwrite(report_bias, file = paste0("Output_", filename, "/CCS_bias_no_correction_",filename,".csv"))
+fwrite(report_bias, file = paste0(folder_path_new, "/CCS_bias_no_correction_",filename,".csv"))
 
 results[["File"]] <- report_bias[,unique(File)]
 
@@ -97,7 +97,7 @@ results[["CCS_bias"]][["dt_CCS_bias"]] <- report_bias
 
 results[["CCS_bias"]][["plot_CCS_bias"]] <- CCS_bias_plot
 
-rm(list=ls()[! ls() %in% c("U13C_CCS_library","data_import","report","results","filename")])
+rm(list=ls()[! ls() %in% c("U13C_CCS_library","data_import","report","results","filename","folder_path_new")])
 
 ```
 
@@ -379,14 +379,14 @@ names(results_correction) <- names_list
 
 results <- c(results, results_correction)
 
-rm(list=ls()[! ls() %in% c("U13C_CCS_library", "data_import", "report", "results", "filename","class_vector", "adduct_vector", "class")])
+rm(list=ls()[! ls() %in% c("U13C_CCS_library", "data_import", "report", "results", "filename","class_vector", "adduct_vector", "class", "folder_path_new")])
 
 # for Correction_functions
 correction_function_dt_all <- lapply(3:length(results), function(i) {
   correction_function_dt_lipid <- results[[i]][["correction_function_dt_lipid"]]
 })
 correction_function_dt_all <- rbindlist(correction_function_dt_all)
-fwrite(correction_function_dt_all, file = paste0("Output_", filename, "/Correction_functions_",filename,".csv"))
+fwrite(correction_function_dt_all, file = paste0(folder_path_new, "/Correction_functions_",filename,".csv"))
 
 # for CCS_bias_mean_all_functions
 bias_all_functions_all <- lapply(3:length(results), function(i) {
@@ -398,7 +398,7 @@ colnames(bias_all_functions_all)[colnames(bias_all_functions_all) == "Number_lip
 bias_all_functions_all[, Lipids_for_correction := as.character(Lipids_for_correction)]
 bias_all_functions_all[Lipids_for_correction == "0", Lipids_for_correction := as.character("No correction")]
 bias_all_functions_all <- unique(bias_all_functions_all)
-fwrite(bias_all_functions_all, file = paste0("Output_", filename, "/CCS_bias_mean_all_functions_",filename,".csv"))
+fwrite(bias_all_functions_all, file = paste0(folder_path_new, "/CCS_bias_mean_all_functions_",filename,".csv"))
 
 # for CCS_bias_mean_by_function
 bias_by_function_all <- lapply(3:length(results), function(i) {
@@ -406,23 +406,23 @@ bias_by_function_all <- lapply(3:length(results), function(i) {
 })
 bias_by_function_all <- rbindlist(bias_by_function_all)
 bias_by_function_all <- unique(bias_by_function_all)
-fwrite(bias_by_function_all, file = paste0("Output_", filename, "/CCS_bias_mean_by_function_",filename,".csv"))
+fwrite(bias_by_function_all, file = paste0(folder_path_new, "/CCS_bias_mean_by_function_",filename,".csv"))
 
 # for Corrected_CCS_values
 correction_results_all <- lapply(3:length(results), function(i) {
   correction_results_lipid <- results[[i]][["correction_results_lipid"]]
 })
 correction_results_all <- rbindlist(correction_results_all)
-fwrite(correction_results_all, file = paste0("Output_", filename, "/Corrected_CCS_values_",filename,".csv"))
+fwrite(correction_results_all, file = paste0(folder_path_new, "/Corrected_CCS_values_",filename,".csv"))
 
 # for Corrected_CCS_values_mean
 correction_results_mean_all <- lapply(3:length(results), function(i) {
   correction_results_mean_lipid <- results[[i]][["correction_results_mean_lipid"]]
 })
 correction_results_mean_all <- rbindlist(correction_results_mean_all)
-fwrite(correction_results_mean_all, file = paste0("Output_", filename, "/Corrected_CCS_values_mean_",filename,".csv"))
+fwrite(correction_results_mean_all, file = paste0(folder_path_new, "/Corrected_CCS_values_mean_",filename,".csv"))
 
-saveRDS(results, file = paste0("Output_", filename, "/R_results_",filename,".RData"))
+saveRDS(results, file = paste0(folder_path_new, "/R_results_",filename,".RData"))
 
 ```
 
