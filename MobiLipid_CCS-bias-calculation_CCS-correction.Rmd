@@ -47,7 +47,7 @@ if (!(exists("folder_path"))) {
 }
 
 # Specify the path where you want to create the folder
-folder_path_new <- paste0(folder_path, "/Output_", filename)
+folder_path_new <- paste0(folder_path, "/", Rmd_name, "_", filename)
 
 # Check if the folder already exists
 if (!file.exists(folder_path_new)) {
