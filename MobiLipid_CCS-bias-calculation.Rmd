@@ -1,0 +1,129 @@
+---
+title: "MobiLipid - A tool for CCS quality control and internal CCS correction using a CCS library for U^13^C labeled lipids"
+author: "Felina Hildebrand"
+date: "13.02.2024"
+output:
+  html_document: 
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    toc_float: true
+    theme: flatly
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+always_allow_html: true
+abstract: 'This R Markdown calculates the CCS bias between measured CCS values of U^13^C labeled lipids compared to ^DT^CCS~N2~ values of a CCS library.
+As output the user gets a HTML file and a PDF file containing the gernerated data as well as a CSV file containing the calculated CCS bias (starting with: "CCS_bias_no_correction").'
+---
+
+```{r Load required packages and data , eval=knitr::is_html_output(), echo=FALSE, include=FALSE}
+library(tcltk)
+library(data.table)
+library(ggplot2)
+library(DT)
+library(webshot)
+library(knitr)
+
+# Init Step to make sure that the dependencies are loaded
+htmltools::tagList(datatable(cars))
+
+# Import U13C labeled lipid CCS library
+U13C_CCS_library <- tk_choose.files(caption = "Import CSV file of U13C labeled lipid CCS library:", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
+U13C_CCS_library <- fread(U13C_CCS_library)
+
+# Import of measured data:
+## Column headers needed: File, LipidClass, LipidSpecies, Adduct, Label, IMS_value, CCS (LipidClass and LipidSpecies nomenclauture has to be as in library)
+if (!(exists("data_import"))) {
+  data_import <- tk_choose.files(caption = "Data import (measured data as CSV file):", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
+}
+data_import <- fread(data_import)
+
+if (!(exists("folder_path"))) {
+  folder_path <- tk_choose.dir(caption = "Select the folder, where the R markdown is saved:")
+}
+
+# Specify the path where you want to create the folder
+folder_path_new <- paste0(folder_path, "/", Rmd_name, "_", filename)
+
+# Check if the folder already exists
+if (!file.exists(folder_path_new)) {
+  # If it doesn't exist, create the folder
+  dir.create(folder_path_new)
+}
+
+```
+
+```{r CCS bias calculation, eval=knitr::is_html_output(), echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis"}
+# combine data to one data table
+report <- data_import[U13C_CCS_library, on=.(LipidClass,LipidSpecies,Adduct)]
+report <- report[complete.cases(report[,File])]
+report[Label == "light", U13C_DTCCS := NA]
+
+# factor for Label, so that light data is shown before heavy
+report[, Label := factor(Label, levels = c("light","heavy"))]
+report[, Adduct := factor(Adduct, levels = c("[M+H]","[M+NH4]","[M+Na]","[M-H]","[M+HCOO]"))]
+
+report_bias <- copy(report)
+report_bias[,CCS_bias := (CCS-U13C_DTCCS)/U13C_DTCCS*100]
+report_bias <- report_bias[complete.cases(CCS_bias)]
+report_bias[, Lipid_count := .N, by=.(LipidClass,Adduct)]
+
+CCS_bias_plot <-
+  ggplot(data=report_bias, aes(x=LipidClass,y=CCS_bias)) +
+  theme_bw() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_violin(aes(color = LipidClass, fill = LipidClass), trim = FALSE, alpha = 0.3) +
+  ggbeeswarm::geom_quasirandom(aes(color = LipidClass), na.rm = TRUE) +
+  geom_point(data = report_bias[Lipid_count == 1],aes(color = LipidClass)) +
+  scale_fill_viridis_d() +
+  scale_color_viridis_d() +
+  facet_grid(Adduct~.) +
+  labs(x = "Lipid class", y="CCS bias %") +
+  theme(legend.position = "none", text = element_text(size = 14))
+
+results <- list()
+report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "Mz", "IMS_value", "CCS", "U13C_DTCCS", "CCS_bias")]
+fwrite(report_bias, file = paste0(folder_path_new, "/CCS_bias_no_correction_",filename,".csv"))
+
+results[["File"]] <- report_bias[,unique(File)]
+
+report_bias <- report_bias[, c("LipidClass","LipidSpecies","Adduct","IMS_value","CCS","U13C_DTCCS","CCS_bias")]
+report_bias[,CCS_bias := round(CCS_bias, digits = 2)]
+results[["CCS_bias"]][["dt_CCS_bias"]] <- report_bias
+
+results[["CCS_bias"]][["plot_CCS_bias"]] <- CCS_bias_plot
+
+rm(list=ls()[! ls() %in% c("U13C_CCS_library","data_import","report","results","filename","folder_path_new")])
+
+saveRDS(results, file = paste0(folder_path_new, "/R_results_",filename,".RData"))
+```
+
+
+```{r Print results to html, echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis", eval=knitr::is_html_output()}
+cat("\n#", paste0("File: ", results[["File"]]), " {-}") 
+
+cat("\n#", "CCS bias calculation", "  \n") 
+
+cat("\n##","Table with CCS bias (%) between measured CCS values and ^DT^CCS~N2~ library of U^13^C labeled lipids","  \n")
+datatable(results[["CCS_bias"]][["dt_CCS_bias"]], rownames = FALSE)
+
+cat("\n##","Violin plot for CCS bias by lipid class and adduct","  \n")
+plot(results[["CCS_bias"]][["plot_CCS_bias"]])
+cat("  \n")
+```
+
+```{r Print results to pdf, echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis", eval=knitr::is_latex_output()}
+cat("\n#", paste0("File: ", results[["File"]]), " {-}") 
+
+cat("\n#", "CCS bias calculation", "  \n") 
+
+cat("\n##","Table with CCS bias (%) between measured CCS values and ^DT^CCS~N2~ library of U^13^C labeled lipids","  \n")
+kable(results[["CCS_bias"]][["dt_CCS_bias"]])
+
+cat("\n##","Violin plot for CCS bias by lipid class and adduct","  \n")
+plot(results[["CCS_bias"]][["plot_CCS_bias"]])
+cat("  \n")
+```
+
