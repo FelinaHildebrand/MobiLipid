@@ -39,11 +39,20 @@ U13C_CCS_library <- fread(U13C_CCS_library)
 ## Column headers needed: File, LipidClass, LipidSpecies, Adduct, Label, IMS_value, CCS (LipidClass and LipidSpecies nomenclauture has to be as in library)
 if (!(exists("data_import"))) {
   data_import <- tk_choose.files(caption = "Data import (measured data as CSV file):", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
-}
+  filename <- basename(data_import)
+  filename <- gsub("\\.csv$", "", filename)
+  }
 data_import <- fread(data_import)
 
 if (!(exists("folder_path"))) {
-  folder_path <- tk_choose.dir(caption = "Select the folder, where the R markdown is saved:")
+Rmd <- tcltk::tk_choose.files(caption = "Select R markdown (.Rmd file) which should be used for data processing:",
+                              filters = matrix(c("Rmd files", "Rmd"), 1, 2),
+                              multi = FALSE)
+Rmd_name <- basename(Rmd)
+Rmd_name <- gsub("\\.Rmd$", "", Rmd_name)
+
+# Get file path where the markdown is saved to save results in the same folder
+folder_path <- dirname(Rmd)
 }
 
 # Specify the path where you want to create the folder
