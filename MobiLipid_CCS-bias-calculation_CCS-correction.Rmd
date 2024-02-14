@@ -31,19 +31,7 @@ library(knitr)
 # Init Step to make sure that the dependencies are loaded
 htmltools::tagList(datatable(cars))
 
-# Import U13C labeled lipid CCS library
-U13C_CCS_library <- tk_choose.files(caption = "Import CSV file of U13C labeled lipid CCS library:", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
-U13C_CCS_library <- fread(U13C_CCS_library)
-
-# Import of measured data:
-## Column headers needed: File, LipidClass, LipidSpecies, Adduct, Label, IMS_value, CCS (LipidClass and LipidSpecies nomenclauture has to be as in library)
-if (!(exists("data_import"))) {
-  data_import <- tk_choose.files(caption = "Data import (measured data as CSV file):", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
-  filename <- basename(data_import)
-  filename <- gsub("\\.csv$", "", filename)
-  }
-data_import <- fread(data_import)
-
+# Choose markdown file, to also get folder path and information for file names
 if (!(exists("folder_path"))) {
 Rmd <- tcltk::tk_choose.files(caption = "Select R markdown (.Rmd file) which should be used for data processing:",
                               filters = matrix(c("Rmd files", "Rmd"), 1, 2),
@@ -55,8 +43,18 @@ Rmd_name <- gsub("\\.Rmd$", "", Rmd_name)
 folder_path <- dirname(Rmd)
 }
 
+# Import of measured data:
+## Column headers needed: File, LipidClass, LipidSpecies, Adduct, Label, IMS_value, CCS (LipidClass and LipidSpecies nomenclauture has to be as in library)
+if (!(exists("data_import"))) {
+  data_import <- tk_choose.files(caption = "Data import (measured data as CSV file):", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
+  filename <- basename(data_import)
+  filename <- gsub("\\.csv$", "", filename)
+  }
+data_import <- fread(data_import)
+
 # Specify the path where you want to create the folder
 folder_path_new <- paste0(folder_path, "/", Rmd_name, "_", filename)
+
 
 # Check if the folder already exists
 if (!file.exists(folder_path_new)) {
@@ -64,6 +62,9 @@ if (!file.exists(folder_path_new)) {
   dir.create(folder_path_new)
 }
 
+# Import U13C labeled lipid CCS library
+U13C_CCS_library <- tk_choose.files(caption = "Import CSV file of U13C labeled lipid CCS library:", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
+U13C_CCS_library <- fread(U13C_CCS_library)
 ```
 
 ```{r CCS bias calculation, eval=knitr::is_html_output(), echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis"}
@@ -449,7 +450,7 @@ cat("  \n")
 
 cat("\n#", "Internal CCS correction", "  \n") 
 
-lapply(3:length(results), function(i) {
+invisible(lapply(3:length(results), function(i) {
   cat("\n##",results[[i]][["Lipid_info"]], "  \n")
   cat(results[[i]][["Lipid_count"]],"  \n")
   
@@ -458,13 +459,13 @@ lapply(3:length(results), function(i) {
 
     lapply(1:length(results[[i]][["vector_x"]]), function(j) {
       x <- results[[i]][["vector_x"]][j]
-      cat("\n###","Number of lipids taken for linear correction function: ",x, "  \n")
+      cat("\n###","Number of lipids taken for linear correction function: ",x , "  \n")
       cat(results[[i]][[paste0(x)]][["max_combinations"]],"  \n")
       cat(results[[i]][[paste0(x)]][["resampling_count"]],"  \n")
       cat(results[[i]][[paste0(x)]][["duplicates_resampled_data"]],"  \n")
       
       cat("\n####", "Correction functions", "  \n")
-      cat("x = IMS value","  \n", "y = ^DT^CCS~N2~ of U^13^C labeled lipid", "  \n","  \n")
+      cat("x = IMS value","  \n", "y = ^DT^CCS~N2~ of U^13^C labeled lipid", "  \n")
       print(htmltools::tagList(datatable(results[[i]][[paste0(x)]][["correction_functions_dt"]], rownames = FALSE)))
       
       cat("\n####", "CCS bias", "  \n")
@@ -490,10 +491,10 @@ lapply(3:length(results), function(i) {
   } else {
     cat(results[[i]][["Correction"]],"  \n")
   }
-})
+}))
 ```
 
-```{r Print results to pdf, echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis", eval=knitr::is_latex_output()}
+```{r Print results to pdf, echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis", eval=knitr::is_latex_output(),}
 cat("\n#", paste0("File: ", results[["File"]]), " {-}") 
 
 cat("\n#", "CCS bias calculation", "  \n") 
@@ -507,7 +508,7 @@ cat("  \n")
 
 cat("\n#", "Internal CCS correction", "  \n") 
 
-lapply(3:length(results), function(i) {
+invisible(lapply(3:length(results), function(i) {
   cat("\n##",results[[i]][["Lipid_info"]], "  \n")
   cat(results[[i]][["Lipid_count"]],"  \n")
   
@@ -522,12 +523,13 @@ lapply(3:length(results), function(i) {
       cat(results[[i]][[paste0(x)]][["duplicates_resampled_data"]],"  \n")
       
       cat("\n####", "Correction functions", "  \n")
-      cat("x = IMS value","  \n", "y = ^DT^CCS~N2~ of U^13^C labeled lipid", "  \n","  \n")
+      cat("x = IMS value","  \n", "y = ^DT^CCS~N2~ of U^13^C labeled lipid", "  \n")
+      cat("First 10 rows of table:", "  \n")
       print(kable(head(results[[i]][[paste0(x)]][["correction_functions_dt"]], n = 10)))
       
       cat("\n####", "CCS bias", "  \n")
       cat("No CCS correction: Mean bias = ", results[[i]][[paste0(x)]][["bias_over_all_functions"]][variable == "CCS_bias", mean_CCS_bias], "% +/- ", results[[i]][[paste0(x)]][["bias_over_all_functions"]][variable == "CCS_bias", sd_CCS_bias],"%","  \n","Internal CCS correction (all correction functions): Mean bias = ",results[[i]][[paste0(x)]][["bias_over_all_functions"]][variable == "CCS_bias_corrected", mean_CCS_bias], "% +/- ", results[[i]][[paste0(x)]][["bias_over_all_functions"]][variable == "CCS_bias_corrected", sd_CCS_bias],"%","  \n", "  \n", sep = "")
-      cat("CCS bias for each correction fuction:", "  \n")
+      cat("CCS bias for each correction fuction (first 10 rows of table):", "  \n")
       print(kable(head(results[[i]][[paste0(x)]][["bias_by_each_functions"]][,!"Lipids_for_correction"], n = 10)))
       
       cat("\n####","Violin plot - CCS bias: No CCS correction vs. internal CCS correction", "  \n")
@@ -549,6 +551,6 @@ lapply(3:length(results), function(i) {
   } else {
     cat(results[[i]][["Correction"]],"  \n")
   }
-})
+}))
 ```
 
