@@ -142,7 +142,7 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
     result_list[["vector_x"]] <- vector_x
     
     # Number of elements to sample taken from vector
-    result_list_test <- lapply(1:length(vector_x), function(j){
+    result_list_sampling <- lapply(1:length(vector_x), function(j){
       x <- vector_x[j]
       result_list_element <- list()
       
@@ -307,8 +307,8 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
       
       return(result_list_element)
     })
-    names(result_list_test) <- vector_x
-    result_list <- c(result_list, result_list_test)
+    names(result_list_sampling) <- vector_x
+    result_list <- c(result_list, result_list_sampling)
     
   } else {
     result_list[["Correction"]] <- "No correction possible."
@@ -345,6 +345,11 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
       bias_all_functions <- result_list[[paste0(i)]][["bias_over_all_functions"]]
     })
     bias_all_functions_lipid <- rbindlist(bias_all_functions_lipid)
+    bias_all_functions_lipid <- unique(bias_all_functions_lipid)
+    bias_all_functions_lipid <- bias_all_functions_lipid[,c("LipidClass","Adduct","Number_lipids_correction_function","mean_CCS_bias","sd_CCS_bias")]
+    colnames(bias_all_functions_lipid)[colnames(bias_all_functions_lipid) == "Number_lipids_correction_function"] <- "Lipids_for_correction"
+    bias_all_functions_lipid[, Lipids_for_correction := as.character(Lipids_for_correction)]
+    bias_all_functions_lipid[Lipids_for_correction == "0", Lipids_for_correction := as.character("No correction")]
     result_list[["bias_all_functions_lipid"]] <- bias_all_functions_lipid
     
     # for CCS_bias_mean_by_function
@@ -352,6 +357,7 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
       bias_by_function <- result_list[[paste0(i)]][["bias_by_each_functions"]]
     })
     bias_by_function_lipid <- rbindlist(bias_by_function_lipid)
+    bias_by_function_lipid <- unique(bias_by_function_lipid)
     result_list[["bias_by_function_lipid"]] <- bias_by_function_lipid
     
     # for Corrected_CCS_values
@@ -402,11 +408,6 @@ bias_all_functions_all <- lapply(3:length(results), function(i) {
   bias_all_functions_lipid <- results[[i]][["bias_all_functions_lipid"]]
 })
 bias_all_functions_all <- rbindlist(bias_all_functions_all)
-bias_all_functions_all <- bias_all_functions_all[,c("LipidClass","Adduct","Number_lipids_correction_function","mean_CCS_bias","sd_CCS_bias")]
-colnames(bias_all_functions_all)[colnames(bias_all_functions_all) == "Number_lipids_correction_function"] <- "Lipids_for_correction"
-bias_all_functions_all[, Lipids_for_correction := as.character(Lipids_for_correction)]
-bias_all_functions_all[Lipids_for_correction == "0", Lipids_for_correction := as.character("No correction")]
-bias_all_functions_all <- unique(bias_all_functions_all)
 fwrite(bias_all_functions_all, file = paste0(folder_path_new, "/CCS_bias_mean_all_functions_",filename,".csv"))
 
 # for CCS_bias_mean_by_function
@@ -414,7 +415,6 @@ bias_by_function_all <- lapply(3:length(results), function(i) {
   bias_by_function_lipid <- results[[i]][["bias_by_function_lipid"]]
 })
 bias_by_function_all <- rbindlist(bias_by_function_all)
-bias_by_function_all <- unique(bias_by_function_all)
 fwrite(bias_by_function_all, file = paste0(folder_path_new, "/CCS_bias_mean_by_function_",filename,".csv"))
 
 # for Corrected_CCS_values
@@ -482,7 +482,8 @@ lapply(3:length(results), function(i) {
       cat("  \n")
     })
     
-    cat("\n###","Violin plot - CCS bias: All correction functions", "  \n")
+    cat("\n###","CCS bias: All correction functions", "  \n")
+    print(htmltools::tagList(datatable(results[[i]][["bias_all_functions_lipid"]], rownames = FALSE)))
     plot(results[[i]][["Violin_plot_all_corrections"]])
     cat("  \n")
     
@@ -539,9 +540,11 @@ lapply(3:length(results), function(i) {
       cat("  \n")
     })
     
-    cat("\n###","Violin plot - CCS bias: All correction functions", "  \n")
+    cat("\n###","CCS bias: All correction functions", "  \n")
+    print(kable(results[[i]][["bias_all_functions_lipid"]]))
     plot(results[[i]][["Violin_plot_all_corrections"]])
     cat("  \n")
+    
     
   } else {
     cat(results[[i]][["Correction"]],"  \n")
