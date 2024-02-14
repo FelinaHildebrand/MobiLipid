@@ -53,14 +53,14 @@ open behind the main window of R studio):
     “Example_data_import.csv”)
     -   **File**: File name of the measurement file
     -   **LipidClass**: Lipid class (ensure to use the same nomenclature
-        as used for the DT^CCS<sub>N2</sub> library)
+        as used for the <sup>DT</sup>CCS<sub>N2</sub> library)
     -   **LipidSpecies**: Lipid species on lipid species level (ensure
-        to use the same nomenclature as used for the DT^CCS<sub>N2</sub>
-        library)
+        to use the same nomenclature as used for the
+        <sup>DT</sup>CCS<sub>N2</sub> library)
     -   **Adduct**: The following adducts are possible: \[M+H\],
         \[M+NH<sub>4</sub>\], \[M+Na\], \[M-H\], and \[M+HCOO\]. Not all
         adducts can be used for each lipid class. The table below shows
-        the possible lipid class - adduct - combinations:
+        the possible lipid class-adduct-combinations:
 
     | Lipid class | Adduct                        |
     |:------------|:------------------------------|
