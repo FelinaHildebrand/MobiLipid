@@ -1,0 +1,10 @@
+File,LipidClass,LipidSpecies,Adduct,Label,IMS_value,CCS
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,AcCa,AcCa 16:1,[M+H],light,1.01,208.47
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,AcCa,AcCa 16:1,[M+H],heavy,1.01,208.95
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,Cer,Cer 34:1;2,[M+Na],light,1.23,252.22
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,Cer,Cer 34:1;2,[M+H],heavy,1.25,256.55
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,Cer,Cer 34:1;2,[M+Na],heavy,1.24,253.54
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,Cer,Cer 34:2;2,[M+H],light,1.25,257.51
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,Cer,Cer 34:1;3,[M+H],heavy,1.28,261.66
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,Cer,Cer 34:1;3,[M+Na],heavy,1.26,258.12
+C12-C13_undiluted_PASEF_pos_1_Y-C2_1_3566.d,Cer,Cer 34:2;3,[M+Na],light,1.23,252.63
