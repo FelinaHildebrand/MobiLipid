@@ -1,7 +1,5 @@
 ---
 title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization"
-#author: "Felina Hildebrand"
-#date: "13.02.2024"
 output:
   html_document: 
     toc: true
@@ -13,11 +11,12 @@ output:
     toc: true
     toc_depth: 2
     number_sections: true
+    latex_engine: xelatex
+mainfont: "Arial"
 always_allow_html: true
-abstract: 'This R Markdown consists of 2 parts:
-First, it calculates the CCS bias between measured CCS values of U^13^C labeled lipids compared to ^DT^CCS~N2~ values of a CCS library.
-Secondly, the ^DT^CCS~N2~ library is used to generate up to 100 linear correction functions using 3 - 6 U^13^C labeled lipids for each lipid class and adduct combination. The measured IM values is converted with each function to a internal lipid class and adduct specific corrected CCS value. The CCS correction is only applied when at least 3 lipids are detected for a lipid class and adduct combination to ensure proper linear fitting.
-As output the user gets a HTML file and a PDF file containing all gernerated data. Tables have to be accessed via the HTML file (in the PDF file thw first 10 rows for all tables are displayed). Additionally, the following CSV files are generated: (1) table with CCS bias (%) before correction (starting with: "CCS_bias_no_correction"), (2) table with all generated CCS correction functions (starting with: "Correction_functions"), (3) table with the mean CCS bias for each lipid class - adduct - combination for each correction function (starting with: "CCS_bias_mean_by_function"), (4) table with the mean CCS bias for each lipid class - adduct - combination over all correction functions with the same number of lipids used to gernerate the function (starting with: "CCS_bias_mean_all_functions"), (5) table with corrected CCS values for each lipid and each correction function (starting with: "Corrected_CCS_values"), and (6) table with mean corrected CCS values for each lipid and all correction functions with the same number of lipids used to gernerate the function (starting with: "Corrected_CCS_values_mean").'
+abstract: 'This R markdown consists of 2 parts:
+First, it calculates the CCS bias between measured CCS values of U^13^C labeled yeast lipids compared to ^DT^CCS~N2~ values of a CCS library.
+Secondly, the ^DT^CCS~N2~ library is used to generate up to 100 linear correction functions using 3 - 6 U^13^C labeled lipids for each lipid class-adduct combination. All measured IM values are converted with each function to an internal lipid class- and adduct-specific corrected CCS value. The CCS correction is only applied when at least 3 lipids are detected for a lipid class-adduct combination to ensure proper linear regression.'
 ---
 
 ```{r Load required packages and data , eval=knitr::is_html_output(), echo=FALSE, include=FALSE}
