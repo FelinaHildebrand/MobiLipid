@@ -41,11 +41,9 @@ Finally, MobiLipid can be run. Therefore, paste the code below into the console 
     - **LipidClass**: Lipid class (ensure to use the same nomenclature as used for the ^DT^CCS~N2~ library)
     - **LipidSpecies**: Lipid species on lipid species level (ensure to use the same nomenclature as used for the ^DT^CCS~N2~ library)
     - **Adduct**: The following adducts are possible: [M+H], [M+NH~4~], [M+Na], [M-H], and [M+HCOO]. Not all adducts can be used for each lipid class. The table below shows the possible lipid class-adduct combinations:
-    
     ```{r, include=TRUE, eval=TRUE, echo=FALSE}
-class_adduct <- data.table::data.table("Lipid class" = c("AcCa", "Cer", "Co", "DG", "HexCer", "LPC", "LPE", "PA", "PC", "PE", "PG", "PI", "PS", "SPH", "TG"), "Adduct" = c("[M+H], [M-H]", "[M+H], [M+Na], [M+HCOO]", "[M+NH4], [M+Na]", "[M+NH4], [M+Na]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M-H]", "[M+NH4], [M+Na], [M-H]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M+Na], [M-H]", "[M+NH4], [M-H]", "[M+NH4], [M+Na], [M-H]", "[M+H], [M+Na], [M-H]", "[M+H]", "[M+NH4], [M+Na]"))
-
-knitr::kable(class_adduct)
+    class_adduct <- data.table::data.table("Lipid class" = c("AcCa", "Cer", "Co", "DG", "HexCer", "LPC", "LPE", "PA", "PC", "PE", "PG", "PI", "PS", "SPH", "TG"), "Adduct" = c("[M+H], [M-H]", "[M+H], [M+Na], [M+HCOO]", "[M+NH4], [M+Na]", "[M+NH4], [M+Na]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M-H]", "[M+NH4], [M+Na], [M-H]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M+Na], [M-H]", "[M+NH4], [M-H]", "[M+NH4], [M+Na], [M-H]", "[M+H], [M+Na], [M-H]", "[M+H]", "[M+NH4], [M+Na]"))
+    knitr::kable(class_adduct)
     ```
     - **Label**: "light" for natural lipids and "heavy" for U^13^C labeled lipids
     - **IMS_value**: Measured mobility (e.g. 1/K~0~ for TIMS)
