@@ -36,16 +36,17 @@ and unzip the files.
 
 Finally, MobiLipid can be run. Therefore, paste the code below into the
 console of R studio and press enter. The code will open 3 pop-up windows
-where you have to choose the following files (be aware that these might
-open behind the main window of R studio):
+where you have to choose the following files (be aware that the windows
+might open behind the main window of R studio):
 
 1.  **Select the R markdown which should be used for data processing.**
     This needs to be a .Rmd file. “MobiLipid_CCS-bias-calculation.Rmd”
     can be used to calculate the CCS bias betweent measured CCS values
-    and <sup>DT</sup>CCS<sub>N2</sub> library values of U13C labeled
-    yeast lipids or “MobiLipid_CCS-bias-calculation_CCS-correction.Rmd”
-    to additionally perform a CCS correction based on linear correction
-    functions using the <sup>DT</sup>CCS<sub>N2</sub> library.
+    and <sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C
+    labeled yeast lipids or
+    “MobiLipid_CCS-bias-calculation_CCS-correction.Rmd” to additionally
+    perform a CCS correction based on linear correction functions using
+    the <sup>DT</sup>CCS<sub>N2</sub> library.
 2.  **Data import (measured data as .csv file)**. This needs to be a
     .csv file containing the measured data. The .csv file has to have
     the following headers: File, LipidClass, LipidSpecies, Adduct,
@@ -60,7 +61,7 @@ open behind the main window of R studio):
     -   **Adduct**: The following adducts are possible: \[M+H\],
         \[M+NH<sub>4</sub>\], \[M+Na\], \[M-H\], and \[M+HCOO\]. Not all
         adducts can be used for each lipid class. The table below shows
-        the possible lipid class-adduct-combinations:
+        the possible lipid class-adduct combinations:
 
     | Lipid class | Adduct                        |
     |:------------|:------------------------------|
@@ -82,7 +83,7 @@ open behind the main window of R studio):
 
     -   **Label**: “light” for natural lipids and “heavy” for
         U<sup>13</sup>C labeled lipids
-    -   **IMS_value**: Measured mobility (e.g. 1/k<sub>0</sub> for TIMS)
+    -   **IMS_value**: Measured mobility (e.g. 1/K<sub>0</sub> for TIMS)
     -   **CCS**: Measured CCS value
 3.  **Import .csv file of U<sup>13</sup>C labeled lipid CCS library**:
     This needs to be a .csv file containing the
@@ -115,3 +116,25 @@ rmarkdown::render(
   output_format = c("html_document", "pdf_document"),
   output_file = c(paste0(Rmd_name,"_",filename,".html"), paste0(Rmd_name,"_",filename,".pdf")))
 ```
+
+## Output
+
+As output MobiLipid generates a .html and a.pdf file with all data.
+Tables have to be accessed via the .html file (in the .pdf file only the
+first 10 rows for all tables are displayed). Additionally, the following
+.csv files are generated: - When running only CCS bias calculation:
+Table with CCS bias (%) before correction (starting with:
+“CCS_bias_no_correction”) - When running CCS bias calculation and
+correction: 1. Table with CCS bias (%) before correction (starting with:
+“CCS_bias_no_correction”) 2. Table with all generated CCS correction
+functions (starting with: “Correction_functions”) 3. Table with the mean
+CCS bias for each lipid class-adduct combination for each correction
+function (starting with: “CCS_bias_mean_by_function”) 4. Table with the
+mean CCS bias for each lipid class-adduct combination over all
+correction functions with the same number of lipids used to generate the
+function (starting with: “CCS_bias_mean_all_functions”) 5. Table with
+corrected CCS values for each lipid and each correction function
+(starting with: “Corrected_CCS_values”) 6. Table with mean corrected CCS
+values for each lipid and all correction functions with the same number
+of lipids used to generate the function (starting with:
+“Corrected_CCS_values_mean”)
