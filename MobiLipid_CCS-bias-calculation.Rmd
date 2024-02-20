@@ -1,7 +1,5 @@
 ---
-title: "MobiLipid - A tool for CCS quality control and internal CCS correction using a CCS library for U^13^C labeled lipids"
-author: "Felina Hildebrand"
-date: "13.02.2024"
+title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization"
 output:
   html_document: 
     toc: true
@@ -13,9 +11,10 @@ output:
     toc: true
     toc_depth: 2
     number_sections: true
+    latex_engine: xelatex
+mainfont: "Arial"
 always_allow_html: true
-abstract: 'This R Markdown calculates the CCS bias between measured CCS values of U^13^C labeled lipids compared to ^DT^CCS~N2~ values of a CCS library.
-As output the user gets a HTML file and a PDF file containing the gernerated data as well as a CSV file containing the calculated CCS bias (starting with: "CCS_bias_no_correction").'
+abstract: 'This R markdown calculates the CCS bias between measured CCS values of U^13^C labeled lipids compared to ^DT^CCS~N2~ values of a CCS library.'
 ---
 
 ```{r Load required packages and data , eval=knitr::is_html_output(), echo=FALSE, include=FALSE}
