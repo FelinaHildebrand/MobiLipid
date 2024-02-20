@@ -82,9 +82,10 @@ rmarkdown::render(
 ## Output
 As output MobiLipid generates a .html and a.pdf file with all data. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed).
 Additionally, the following .csv files are generated: 
-- When running only CCS bias calculation:
+
+- **CCS bias calculation:**
   Table with CCS bias (%) before correction (starting with: "CCS_bias_no_correction")
-- When running CCS bias calculation and correction:
+- **CCS bias calculation and correction:**
   1. Table with CCS bias (%) before correction (starting with: "CCS_bias_no_correction")
   2. Table with all generated CCS correction functions (starting with: "Correction_functions")
   3. Table with the mean CCS bias for each lipid class-adduct combination for each correction function (starting with: "CCS_bias_mean_by_function")
