@@ -124,9 +124,13 @@ Tables have to be accessed via the .html file (in the .pdf file only the
 first 10 rows for all tables are displayed). Additionally, the following
 .csv files are generated:
 
--   **CCS bias calculation:** Table with CCS bias (%) before correction
-    (starting with: “CCS_bias_no_correction”)
+-   **CCS bias calculation:**
+
+    Table with CCS bias (%) before correction (starting with:
+    “CCS_bias_no_correction”)
+
 -   **CCS bias calculation and correction:**
+
     1.  Table with CCS bias (%) before correction (starting with:
         “CCS_bias_no_correction”)
     2.  Table with all generated CCS correction functions (starting
