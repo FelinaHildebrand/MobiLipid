@@ -1,7 +1,7 @@
 ---
-title: "MobiLipid - A tool for CCS quality control and internal CCS correction using a CCS library for U^13^C labeled lipids"
-author: "Felina Hildebrand"
-date: "13.02.2024"
+title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization"
+#author: "Felina Hildebrand"
+#date: "13.02.2024"
 output:
   html_document: 
     toc: true
