@@ -131,20 +131,18 @@ first 10 rows for all tables are displayed). Additionally, the following
 
 -   **CCS bias calculation and correction:**
 
-    1.  Table with CCS bias (%) before correction (starting with:
-        “CCS_bias_no_correction”)
-    2.  Table with all generated CCS correction functions (starting
-        with: “Correction_functions”)
-    3.  Table with the mean CCS bias for each lipid class-adduct
-        combination for each correction function (starting with:
-        “CCS_bias_mean_by_function”)
-    4.  Table with the mean CCS bias for each lipid class-adduct
-        combination over all correction functions with the same number
-        of lipids used to generate the function (starting with:
-        “CCS_bias_mean_all_functions”)
-    5.  Table with corrected CCS values for each lipid and each
-        correction function (starting with: “Corrected_CCS_values”)
-    6.  Table with mean corrected CCS values for each lipid and all
-        correction functions with the same number of lipids used to
-        generate the function (starting with:
-        “Corrected_CCS_values_mean”)
+1.  Table with CCS bias (%) before correction (starting with:
+    “CCS_bias_no_correction”)
+2.  Table with all generated CCS correction functions (starting with:
+    “Correction_functions”)
+3.  Table with the mean CCS bias for each lipid class-adduct combination
+    for each correction function (starting with:
+    “CCS_bias_mean_by_function”)
+4.  Table with the mean CCS bias for each lipid class-adduct combination
+    over all correction functions with the same number of lipids used to
+    generate the function (starting with: “CCS_bias_mean_all_functions”)
+5.  Table with corrected CCS values for each lipid and each correction
+    function (starting with: “Corrected_CCS_values”)
+6.  Table with mean corrected CCS values for each lipid and all
+    correction functions with the same number of lipids used to generate
+    the function (starting with: “Corrected_CCS_values_mean”)
