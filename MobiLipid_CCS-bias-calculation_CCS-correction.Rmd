@@ -68,7 +68,7 @@ U13C_CCS_library <- fread(U13C_CCS_library)
 
 ```{r CCS bias calculation, eval=knitr::is_html_output(), echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis"}
 # combine data to one data table
-report <- data_import[U13C_CCS_library, on=.(LipidClass,LipidSpecies,Adduct)]
+report <- data_import[U13C_CCS_library[,!"Mz"], on=.(LipidClass,LipidSpecies,Adduct)]
 report <- report[complete.cases(report[,File])]
 report[Label == "light", U13C_DTCCS := NA]
 
@@ -95,13 +95,16 @@ CCS_bias_plot <-
   theme(legend.position = "none", text = element_text(size = 14))
 
 results <- list()
-report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "Mz", "IMS_value", "CCS", "U13C_DTCCS", "CCS_bias")]
+report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "IMS_value", "CCS", "U13C_DTCCS", "CCS_bias")]
+report_bias[,IMS_value := round(IMS_value, digits = 2)]
+report_bias[,CCS := round(CCS, digits = 2)]
+report_bias[,CCS_bias := round(CCS_bias, digits = 2)]
+
 fwrite(report_bias, file = paste0(folder_path_new, "/CCS_bias_no_correction_",filename,".csv"))
 
 results[["File"]] <- report_bias[,unique(File)]
 
 report_bias <- report_bias[, c("LipidClass","LipidSpecies","Adduct","IMS_value","CCS","U13C_DTCCS","CCS_bias")]
-report_bias[,CCS_bias := round(CCS_bias, digits = 2)]
 results[["CCS_bias"]][["dt_CCS_bias"]] <- report_bias
 
 results[["CCS_bias"]][["plot_CCS_bias"]] <- CCS_bias_plot
@@ -215,7 +218,7 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
       dt_class_correction[, CCS_bias_corrected := (CCS_corrected-U13C_DTCCS)/U13C_DTCCS*100]
       
       # wide to long for ggplots + some restructuring
-      dt_class_correction_long <- melt(dt_class_correction, id.vars = c("File", "LipidClass", "LipidSpecies", "Formula", "Mz", "Polarity", "Adduct", "Label", "U13C_DTCCS", "CCS", "CCS_corrected", "function_nr", "slope", "intercept"), measure=patterns("^CCS_bias"), value.name = "CCS_bias")
+      dt_class_correction_long <- melt(dt_class_correction, id.vars = c("File", "LipidClass", "LipidSpecies", "Formula", "Polarity", "Adduct", "Label", "U13C_DTCCS", "CCS", "CCS_corrected", "function_nr", "slope", "intercept"), measure=patterns("^CCS_bias"), value.name = "CCS_bias")
       dt_class_correction_long <- dt_class_correction_long[variable == "CCS_bias" & function_nr == 1 | variable == "CCS_bias_corrected"]
       dt_class_correction_long[variable == "CCS_bias" & function_nr == 1, function_nr := 0]
       dt_class_correction_long[function_nr == 0, c("CCS_corrected","slope","intercept") := NA]
