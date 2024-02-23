@@ -35,10 +35,12 @@ Furthermore, it has to be ensured that the .Rmd file containing MobiLipid ("Mobi
 
 Finally, MobiLipid can be run. Therefore, paste the code below into the console of R studio and press enter. The code will open 3 pop-up windows where you have to choose the following files (be aware that the windows might open behind the main window of R studio):
 
-1. **Select the R markdown which should be used for data processing:** This needs to be a .Rmd file. 
+1. **Select the R markdown which should be used for data processing:**
+    This needs to be a .Rmd file. 
     - "*MobiLipid_CCS-bias-calculation.Rmd*" can be used to calculate the CCS bias between measured CCS values and ^DT^CCS~N2~ library values of U^13^C labeled yeast lipids
     - "*MobiLipid_CCS-bias-calculation_CCS-correction.Rmd*" to additionally perform a CCS correction based on linear correction functions using the ^DT^CCS~N2~ library.
-2. **Data import (measured data as .csv file):** This needs to be a .csv file containing the measured data. The .csv file has to have the following headers: File, LipidClass, LipidSpecies, Adduct, Label, IMS_value, CCS (an examplary file es provided: "Example_data_import.csv")
+2. **Data import (measured data as .csv file):**
+    This needs to be a .csv file containing the measured data. The .csv file has to have the following headers: "File", "LipidClass", "LipidSpecies", "Adduct", "Label", "IMS_value", "CCS" (an exemplary file is provided: "*Example_data_import.csv*")
     - **File**: File name of the measurement file
     - **LipidClass**: Lipid class (ensure to use the same nomenclature as used for the ^DT^CCS~N2~ library)
     - **LipidSpecies**: Lipid species on lipid species level (ensure to use the same nomenclature as used for the ^DT^CCS~N2~ library)
@@ -51,7 +53,8 @@ Finally, MobiLipid can be run. Therefore, paste the code below into the console 
     - **IMS_value**: Measured mobility (e.g. 1/K~0~ for TIMS)
     - **CCS**: Measured CCS value
 
-3. **Import .csv file of U^13^C labeled lipid CCS library**: This needs to be a .csv file containing the ^DT^CCS~N2~ library. It is provided with the code and called "U13C_DT_CCS_library.csv".
+3. **Import .csv file of U^13^C labeled lipid CCS library**: 
+    This needs to be a .csv file containing the ^DT^CCS~N2~ library. It is provided with the code and called "*U13C_DT_CCS_library.csv*".
 
 **Code to run MobiLipid:**
 

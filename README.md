@@ -50,9 +50,9 @@ might open behind the main window of R studio):
         functions using the <sup>DT</sup>CCS<sub>N2</sub> library.
 2.  **Data import (measured data as .csv file):** This needs to be a
     .csv file containing the measured data. The .csv file has to have
-    the following headers: File, LipidClass, LipidSpecies, Adduct,
-    Label, IMS_value, CCS (an examplary file es provided:
-    “Example_data_import.csv”)
+    the following headers: “File”, “LipidClass”, “LipidSpecies”,
+    “Adduct”, “Label”, “IMS_value”, “CCS” (an exemplary file is
+    provided: “*Example_data_import.csv*”)
     -   **File**: File name of the measurement file
     -   **LipidClass**: Lipid class (ensure to use the same nomenclature
         as used for the <sup>DT</sup>CCS<sub>N2</sub> library)
@@ -89,7 +89,7 @@ might open behind the main window of R studio):
 3.  **Import .csv file of U<sup>13</sup>C labeled lipid CCS library**:
     This needs to be a .csv file containing the
     <sup>DT</sup>CCS<sub>N2</sub> library. It is provided with the code
-    and called “U13C_DT_CCS_library.csv”.
+    and called “*U13C_DT_CCS_library.csv*”.
 
 **Code to run MobiLipid:**
 
