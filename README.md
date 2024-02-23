@@ -41,49 +41,59 @@ might open behind the main window of R studio):
 
 1.  **Select the R markdown which should be used for data processing:**
 
-This needs to be a .Rmd file. - “*MobiLipid_CCS-bias-calculation.Rmd*”
-can be used to calculate the CCS bias between measured CCS values and
-<sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C labeled
-yeast lipids - “*MobiLipid_CCS-bias-calculation_CCS-correction.Rmd*” to
-additionally perform a CCS correction based on linear correction
-functions using the <sup>DT</sup>CCS<sub>N2</sub> library. 2. **Data
-import (measured data as .csv file):**
+    This needs to be a .Rmd file.
 
-This needs to be a .csv file containing the measured data. The .csv file
-has to have the following headers: “File”, “LipidClass”, “LipidSpecies”,
-“Adduct”, “Label”, “IMS_value”, “CCS” (an exemplary file is provided:
-“*Example_data_import.csv*”) - **File**: File name of the measurement
-file - **LipidClass**: Lipid class (ensure to use the same nomenclature
-as used for the <sup>DT</sup>CCS<sub>N2</sub> library) -
-**LipidSpecies**: Lipid species on lipid species level (ensure to use
-the same nomenclature as used for the <sup>DT</sup>CCS<sub>N2</sub>
-library) - **Adduct**: The following adducts are possible: \[M+H\],
-\[M+NH<sub>4</sub>\], \[M+Na\], \[M-H\], and \[M+HCOO\]. Not all adducts
-can be used for each lipid class. The table below shows the possible
-lipid class-adduct combinations:
+    -   “*MobiLipid_CCS-bias-calculation.Rmd*” can be used to calculate
+        the CCS bias between measured CCS values and
+        <sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C
+        labeled yeast lipids
+    -   “*MobiLipid_CCS-bias-calculation_CCS-correction.Rmd*” to
+        additionally perform a CCS correction based on linear correction
+        functions using the <sup>DT</sup>CCS<sub>N2</sub> library.
 
-    |Lipid class |Adduct                  |
-    |:-----------|:-----------------------|
-    |AcCa        |[M+H], [M-H]            |
-    |Cer         |[M+H], [M+Na], [M+HCOO] |
-    |Co          |[M+NH4], [M+Na]         |
-    |DG          |[M+NH4], [M+Na]         |
-    |HexCer      |[M+H], [M+Na], [M+HCOO] |
-    |LPC         |[M+H], [M+Na], [M+HCOO] |
-    |LPE         |[M+H], [M-H]            |
-    |PA          |[M+NH4], [M+Na], [M-H]  |
-    |PC          |[M+H], [M+Na], [M+HCOO] |
-    |PE          |[M+H], [M+Na], [M-H]    |
-    |PG          |[M+NH4], [M-H]          |
-    |PI          |[M+NH4], [M+Na], [M-H]  |
-    |PS          |[M+H], [M+Na], [M-H]    |
-    |SPH         |[M+H]                   |
-    |TG          |[M+NH4], [M+Na]         |
-    - **Label**: "light" for natural lipids and "heavy" for U^13^C labeled lipids
-    - **IMS_value**: Measured mobility (e.g. 1/K~0~ for TIMS)
-    - **CCS**: Measured CCS value
+2.  **Data import (measured data as .csv file):**
 
-1.  **Import .csv file of U<sup>13</sup>C labeled lipid CCS library**:
+    This needs to be a .csv file containing the measured data. The .csv
+    file has to have the following headers: “File”, “LipidClass”,
+    “LipidSpecies”, “Adduct”, “Label”, “IMS_value”, “CCS” (an exemplary
+    file is provided: “*Example_data_import.csv*”)
+
+    -   **File**: File name of the measurement file
+    -   **LipidClass**: Lipid class (ensure to use the same nomenclature
+        as used for the <sup>DT</sup>CCS<sub>N2</sub> library)
+    -   **LipidSpecies**: Lipid species on lipid species level (ensure
+        to use the same nomenclature as used for the
+        <sup>DT</sup>CCS<sub>N2</sub> library)
+    -   **Adduct**: The following adducts are possible: \[M+H\],
+        \[M+NH<sub>4</sub>\], \[M+Na\], \[M-H\], and \[M+HCOO\]. Not all
+        adducts can be used for each lipid class. The table below shows
+        the possible lipid class-adduct combinations:
+
+    | Lipid class | Adduct                        |
+    |:------------|:------------------------------|
+    | AcCa        | \[M+H\], \[M-H\]              |
+    | Cer         | \[M+H\], \[M+Na\], \[M+HCOO\] |
+    | Co          | \[M+NH4\], \[M+Na\]           |
+    | DG          | \[M+NH4\], \[M+Na\]           |
+    | HexCer      | \[M+H\], \[M+Na\], \[M+HCOO\] |
+    | LPC         | \[M+H\], \[M+Na\], \[M+HCOO\] |
+    | LPE         | \[M+H\], \[M-H\]              |
+    | PA          | \[M+NH4\], \[M+Na\], \[M-H\]  |
+    | PC          | \[M+H\], \[M+Na\], \[M+HCOO\] |
+    | PE          | \[M+H\], \[M+Na\], \[M-H\]    |
+    | PG          | \[M+NH4\], \[M-H\]            |
+    | PI          | \[M+NH4\], \[M+Na\], \[M-H\]  |
+    | PS          | \[M+H\], \[M+Na\], \[M-H\]    |
+    | SPH         | \[M+H\]                       |
+    | TG          | \[M+NH4\], \[M+Na\]           |
+
+    -   **Label**: “light” for natural lipids and “heavy” for
+        U<sup>13</sup>C labeled lipids
+    -   **IMS_value**: Measured mobility (e.g. 1/K<sub>0</sub> for TIMS)
+    -   **CCS**: Measured CCS value
+
+3.  **Import .csv file of U<sup>13</sup>C labeled lipid CCS library**:
+
     This needs to be a .csv file containing the
     <sup>DT</sup>CCS<sub>N2</sub> library. It is provided with the code
     and called “*U13C_DT_CCS_library.csv*”.
