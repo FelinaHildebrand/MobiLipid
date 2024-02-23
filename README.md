@@ -39,15 +39,16 @@ console of R studio and press enter. The code will open 3 pop-up windows
 where you have to choose the following files (be aware that the windows
 might open behind the main window of R studio):
 
-1.  **Select the R markdown which should be used for data processing.**
-    This needs to be a .Rmd file. “MobiLipid_CCS-bias-calculation.Rmd”
-    can be used to calculate the CCS bias betweent measured CCS values
-    and <sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C
-    labeled yeast lipids or
-    “MobiLipid_CCS-bias-calculation_CCS-correction.Rmd” to additionally
-    perform a CCS correction based on linear correction functions using
-    the <sup>DT</sup>CCS<sub>N2</sub> library.
-2.  **Data import (measured data as .csv file)**. This needs to be a
+1.  **Select the R markdown which should be used for data processing:**
+    This needs to be a .Rmd file.
+    -   “*MobiLipid_CCS-bias-calculation.Rmd*” can be used to calculate
+        the CCS bias between measured CCS values and
+        <sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C
+        labeled yeast lipids
+    -   “*MobiLipid_CCS-bias-calculation_CCS-correction.Rmd*” to
+        additionally perform a CCS correction based on linear correction
+        functions using the <sup>DT</sup>CCS<sub>N2</sub> library.
+2.  **Data import (measured data as .csv file):** This needs to be a
     .csv file containing the measured data. The .csv file has to have
     the following headers: File, LipidClass, LipidSpecies, Adduct,
     Label, IMS_value, CCS (an examplary file es provided:
