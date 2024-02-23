@@ -56,7 +56,7 @@ if (!file.exists(folder_path_new)) {
 
 ```{r CCS bias calculation, eval=knitr::is_html_output(), echo=FALSE, fig.align="center", fig.height=10, fig.width=15, warning=FALSE, results="asis"}
 # combine data to one data table
-report <- data_import[U13C_CCS_library, on=.(LipidClass,LipidSpecies,Adduct)]
+report <- data_import[U13C_CCS_library[,!"Mz"], on=.(LipidClass,LipidSpecies,Adduct)]
 report <- report[complete.cases(report[,File])]
 report[Label == "light", U13C_DTCCS := NA]
 
@@ -83,13 +83,16 @@ CCS_bias_plot <-
   theme(legend.position = "none", text = element_text(size = 14))
 
 results <- list()
-report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "Mz", "IMS_value", "CCS", "U13C_DTCCS", "CCS_bias")]
+report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "IMS_value", "CCS", "U13C_DTCCS", "CCS_bias")]
+report_bias[,IMS_value := round(IMS_value, digits = 2)]
+report_bias[,CCS := round(CCS, digits = 2)]
+report_bias[,CCS_bias := round(CCS_bias, digits = 2)]
+
 fwrite(report_bias, file = paste0(folder_path_new, "/CCS_bias_no_correction_",filename,".csv"))
 
 results[["File"]] <- report_bias[,unique(File)]
 
 report_bias <- report_bias[, c("LipidClass","LipidSpecies","Adduct","IMS_value","CCS","U13C_DTCCS","CCS_bias")]
-report_bias[,CCS_bias := round(CCS_bias, digits = 2)]
 results[["CCS_bias"]][["dt_CCS_bias"]] <- report_bias
 
 results[["CCS_bias"]][["plot_CCS_bias"]] <- CCS_bias_plot
