@@ -104,7 +104,7 @@ rmarkdown::render(
 
 ## Output
 
-As output MobiLipid generates a .html and a.pdf file with all data. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed). Additionally, the following .csv files are generated:
+As output MobiLipid generates a .html and a.pdf file with all data for CCS bias calculation and correction. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed). Additionally, the following .csv files are generated:
 
 -   **CCS bias calculation:**
 
