@@ -18,8 +18,8 @@ MobiLipid is a R markdown enabling CCS quality control for IM-MS
 lipidomics by internal standardization. For utilizing the MobiLipid
 workflow samples measured with (LC-)IM-MS have to be spiked with
 U<sup>13</sup>C labeled internal standards (fully labeled yeast
-extract<sup>[**neubauer2012?**](#ref-neubauer2012)</sup>). Subsequently,
-it is possible to utilize the <sup>DT</sup>CCS<sub>N2</sub> library for
+extract<sup>[1](#ref-neubauer13CellExtract2012)</sup>). Subsequently, it
+is possible to utilize the <sup>DT</sup>CCS<sub>N2</sub> library for
 U<sup>13</sup>C labeled lipids (provided together with the code and
 publication) to first calculate CCS bias between measured CCS values and
 library values of U<sup>13</sup>C labeled lipids. Additionally,
@@ -192,7 +192,7 @@ displayed). Following results are summarized in the output (e.g. for PC,
 -   Summary of resampling results to set up distinct correction
     functions
 
-    <img src="Output_pictures/Output_2.jpg" width="446" />
+    <img src="Output_pictures/Output_2.jpg" width="595" />
 
 -   Summary of all generated correction functions by number of
     U<sup>13</sup>C labeled lipids used for generating them
@@ -222,8 +222,8 @@ displayed). Following results are summarized in the output (e.g. for PC,
     ![](Output_pictures/Output_7.jpg)
 
 Additionally, a .RData file is saved storing all results as a list which
-can be opend within R studio using (`readRDS()`) and the following .csv
-files are generated:
+can be opened within R studio (`readRDS()`) and the following .csv files
+are generated:
 
 -   **CCS bias calculation:**
 
@@ -250,3 +250,14 @@ files are generated:
     the function (starting with: “Corrected_CCS_values_mean”)
 
 ## References
+
+<span class="csl-left-margin">(1)
+</span><span class="csl-right-inline">Neubauer, S.; Haberhauer‐Troyer,
+C.; Klavins, K.; Russmayer, H.; Steiger, M. G.; Gasser, B.; Sauer, M.;
+Mattanovich, D.; Hann, S.; Koellensperger, G. \<Span
+Style="font-Variant:small-Caps;"\>U\</Span\> <sup>13</sup> \<Span
+Style="font-Variant:small-Caps;"\>C\</Span\> Cell Extract of \<Span
+Style="font-Variant:small-Caps;"\>P\</Span\> Ichia Pastoris – a Powerful
+Tool for Evaluation of Sample Preparation in Metabolomics. *Journal of
+Separation Science* **2012**, *35* (22), 3091–3105.
+<https://doi.org/10.1002/jssc.201200447>.</span>
