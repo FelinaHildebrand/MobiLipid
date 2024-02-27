@@ -157,11 +157,11 @@ Additionally, a .RData file is saved storing all results as a list which can be 
 
 -   **CCS bias calculation and correction:**
 
-    1.  *CCS_bias_no_correction*: Table with CCS bias (%) before correction
-    2.  *Correction_functions*: Table with all generated CCS correction functions
-    3.  *CCS_bias_mean_by_function*: Table with the mean CCS bias for each lipid class-adduct combination for each correction function
-    4.  *CCS_bias_mean_all_functions*: Table with the mean CCS bias for each lipid class-adduct combination over all correction functions with the same number of lipids used to generate the function
-    5.  *Corrected_CCS_values*: Table with corrected CCS values and CCS bias after correction for each lipid and each correction function
-    6.  *Corrected_CCS_values_mean*: Table with0 mean corrected CCS values for each lipid and all correction functions with the same number of lipids used to generate the function
+1.  *CCS_bias_no_correction*: Table with CCS bias (%) before correction
+2.  *Correction_functions*: Table with all generated CCS correction functions
+3.  *CCS_bias_mean_by_function*: Table with the mean CCS bias for each lipid class-adduct combination for each correction function
+4.  *CCS_bias_mean_all_functions*: Table with the mean CCS bias for each lipid class-adduct combination over all correction functions with the same number of lipids used to generate the function
+5.  *Corrected_CCS_values*: Table with corrected CCS values and CCS bias after correction for each lipid and each correction function
+6.  *Corrected_CCS_values_mean*: Table with0 mean corrected CCS values for each lipid and all correction functions with the same number of lipids used to generate the function
 
 ## References
