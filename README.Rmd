@@ -8,8 +8,7 @@ link-citations: true
 csl: analytical-chemistry.csl
 ---
 
-# MobiLipid
-## A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization
+# MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization
 
 MobiLipid aims to streamline lipidomics workflows by offering a fully automated solution for assessing and correcting collision cross section (CCS) bias in ion mobility-mass spectrometry (IM-MS) analyses. Employing a newly established ^DT^CCS~N2~ library for U^13^C labeled lipids, which is provided together with the code, MobiLipid eliminates the need to measure additional external calibration besides vendor specific calibration requirements by internal standardization. Our tool enhances CCS quality control by providing a R Markdown that integrates into IM-MS lipidomics workflows, requiring a low number of lipids detected per lipid class for effective implementation of CCS bias calculation and correction.
 
@@ -39,7 +38,7 @@ for (package in packages) {
 }
 ```
 
-## Download of MobiLipid
+## Downloading MobiLipid
 
 Furthermore, it has to be ensured that the .Rmd file containing MobiLipid ("MobiLipid_CCS-bias-calculation.Rmd" and/or "MobiLipid_CCS-bias-calculation_CCS-correction.Rmd") as well as the .csv file of the ^DT^CCS~N2~ library for U^13^C labeled lipids of yeast ("U13C_DT_CCS_library.csv") is downloaded. This can be done by downloading the entire GitHub repository as a .zip file and unzip the files.
 

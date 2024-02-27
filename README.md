@@ -1,6 +1,4 @@
-# MobiLipid
-
-## A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization
+# MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization
 
 MobiLipid aims to streamline lipidomics workflows by offering a fully
 automated solution for assessing and correcting collision cross section
@@ -70,7 +68,7 @@ for (package in packages) {
 }
 ```
 
-## Download of MobiLipid
+## Downloading MobiLipid
 
 Furthermore, it has to be ensured that the .Rmd file containing
 MobiLipid (“MobiLipid_CCS-bias-calculation.Rmd” and/or
