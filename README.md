@@ -1,5 +1,25 @@
 # MobiLipid
 
+MobiLipid aims to streamline lipidomics workflows by offering a fully
+automated solution for assessing and correcting collision cross section
+(CCS) bias in ion mobility-mass spectrometry (IM-MS) analyses. Employing
+a newly established <sup>DT</sup>CCS<sub>N2</sub> library for
+U<sup>13</sup>C labeled lipids, which is provided together with the
+code, MobiLipid eliminates the need to measure additional external
+calibration besides vendor specific calibration requirements by internal
+standardization. Our tool enhances CCS quality control by providing a R
+Markdown that integrates into IM-MS lipidomics workflows, requiring a
+low number of lipids detected per lipid class for effective
+implementation of CCS bias calculation and correction.
+
+## Introduction to MobiLipid
+
+MobiLipid is a R markdown enabling CCS quality control for IM-MS
+lipidomics by internal standardization. For utilizing the MobiLipid
+workflow samples measured with (LC-)IM-MS have to be spiked with
+U<sup>13</sup>C labeled internal standards (fully labeled yeast extract
+([**Neubauer2012?**](#ref-Neubauer2012)))
+
 ## Necessary installations
 
 To run MobiLipid it is necessary to install
@@ -149,8 +169,14 @@ first 10 rows for all tables are displayed). Additionally, the following
 4.  Table with the mean CCS bias for each lipid class-adduct combination
     over all correction functions with the same number of lipids used to
     generate the function (starting with: “CCS_bias_mean_all_functions”)
-5.  Table with corrected CCS values for each lipid and each correction
-    function (starting with: “Corrected_CCS_values”)
+5.  Table with corrected CCS values and CCS bias after correction for
+    each lipid and each correction function (starting with:
+    “Corrected_CCS_values”)
 6.  Table with mean corrected CCS values for each lipid and all
     correction functions with the same number of lipids used to generate
     the function (starting with: “Corrected_CCS_values_mean”)
+
+## Citation
+
+Please cite the following publication if you use MobiLipid in your
+workfolw:

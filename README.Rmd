@@ -3,11 +3,18 @@ title: "MobiLipid"
 output:   
   md_document:
     variant: markdown_github
-abstract: 'The goal of MobiLipid is to monitor the bias of collisional cross section (CCS) when using secondary ion mobility technologies (e.g. trapped ion mobility spectrometry (TIMS)). MobiLipid can be used when 
-'
+bibliography: MobiLipid.bib
+link-citations: true
 ---
 
 # MobiLipid
+
+MobiLipid aims to streamline lipidomics workflows by offering a fully automated solution for assessing and correcting collision cross section (CCS) bias in ion mobility-mass spectrometry (IM-MS) analyses. Employing a newly established ^DT^CCS~N2~ library for U^13^C labeled lipids, which is provided together with the code, MobiLipid eliminates the need to measure additional external calibration besides vendor specific calibration requirements by internal standardization. Our tool enhances CCS quality control by providing a R Markdown that integrates into IM-MS lipidomics workflows, requiring a low number of lipids detected per lipid class for effective implementation of CCS bias calculation and correction.
+
+## Introduction to MobiLipid
+
+MobiLipid is a R markdown enabling CCS quality control for IM-MS lipidomics by internal standardization. For utilizing the MobiLipid workflow samples measured with (LC-)IM-MS have to be spiked with U^13^C labeled internal standards (fully labeled yeast extract [@Neubauer2012])
+
 
 ## Necessary installations
 
@@ -88,6 +95,7 @@ rmarkdown::render(
 ```
 
 ## Output
+
 As output MobiLipid generates a .html and a.pdf file with all data. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed).
 Additionally, the following .csv files are generated: 
 
@@ -101,5 +109,9 @@ Additionally, the following .csv files are generated:
 2. Table with all generated CCS correction functions (starting with: "Correction_functions")
 3. Table with the mean CCS bias for each lipid class-adduct combination for each correction function (starting with: "CCS_bias_mean_by_function")
 4. Table with the mean CCS bias for each lipid class-adduct combination over all correction functions with the same number of lipids used to generate the function (starting with: "CCS_bias_mean_all_functions")
-5. Table with corrected CCS values for each lipid and each correction function (starting with: "Corrected_CCS_values")
+5. Table with corrected CCS values and CCS bias after correction for each lipid and each correction function (starting with: "Corrected_CCS_values")
 6. Table with mean corrected CCS values for each lipid and all correction functions with the same number of lipids used to generate the function (starting with: "Corrected_CCS_values_mean")
+
+## Citation
+
+Please cite the following publication if you use MobiLipid in your workfolw:
