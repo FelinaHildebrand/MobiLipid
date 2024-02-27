@@ -221,9 +221,9 @@ displayed). Following results are summarized in the output (e.g. for PC,
 
     ![](Output_pictures/Output_7.jpg)
 
-Tables have to be accessed via the .html file (in the .pdf file only the
-first 10 rows for all tables are displayed). Additionally, the following
-.csv files are generated:
+Additionally, a .RData file is saved storing all results as a list which
+can be opend within R studio using (`readRDS()`) and the following .csv
+files are generated:
 
 -   **CCS bias calculation:**
 
