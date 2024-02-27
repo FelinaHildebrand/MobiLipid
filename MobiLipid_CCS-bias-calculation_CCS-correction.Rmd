@@ -3,13 +3,13 @@ title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics 
 output:
   html_document: 
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     number_sections: true
     toc_float: true
     theme: flatly
   pdf_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     number_sections: true
     latex_engine: xelatex
 mainfont: "Arial"
