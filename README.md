@@ -18,7 +18,7 @@ MobiLipid is a R markdown enabling CCS quality control for IM-MS
 lipidomics by internal standardization. For utilizing the MobiLipid
 workflow samples measured with (LC-)IM-MS have to be spiked with
 U<sup>13</sup>C labeled internal standards (fully labeled yeast extract
-([**Neubauer2012?**](#ref-Neubauer2012)))
+([Neubauer et al. 2012](#ref-neubauer13CellExtract2012)))
 
 ## Necessary installations
 
@@ -180,3 +180,13 @@ first 10 rows for all tables are displayed). Additionally, the following
 
 Please cite the following publication if you use MobiLipid in your
 workfolw:
+
+Neubauer, Stefan, Christina Haberhauer‐Troyer, Kristaps Klavins, Hannes
+Russmayer, Matthias G. Steiger, Brigitte Gasser, Michael Sauer, Diethard
+Mattanovich, Stephan Hann, and Gunda Koellensperger. 2012.
+“<span class="smallcaps">U</span> <sup>13</sup>
+<span class="smallcaps">C</span> Cell Extract of
+<span class="smallcaps">P</span> Ichia Pastoris – a Powerful Tool for
+Evaluation of Sample Preparation in Metabolomics.” *Journal of
+Separation Science* 35 (22): 3091–3105.
+<https://doi.org/10.1002/jssc.201200447>.

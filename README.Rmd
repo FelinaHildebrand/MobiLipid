@@ -13,7 +13,7 @@ MobiLipid aims to streamline lipidomics workflows by offering a fully automated 
 
 ## Introduction to MobiLipid
 
-MobiLipid is a R markdown enabling CCS quality control for IM-MS lipidomics by internal standardization. For utilizing the MobiLipid workflow samples measured with (LC-)IM-MS have to be spiked with U^13^C labeled internal standards (fully labeled yeast extract [@Neubauer2012])
+MobiLipid is a R markdown enabling CCS quality control for IM-MS lipidomics by internal standardization. For utilizing the MobiLipid workflow samples measured with (LC-)IM-MS have to be spiked with U^13^C labeled internal standards (fully labeled yeast extract [@neubauer13CellExtract2012])
 
 
 ## Necessary installations
