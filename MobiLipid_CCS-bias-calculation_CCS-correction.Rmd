@@ -43,7 +43,7 @@ folder_path <- dirname(Rmd)
 }
 
 # Import of measured data:
-## Column headers needed: File, LipidClass, LipidSpecies, Adduct, Label, IMS_value, CCS (LipidClass and LipidSpecies nomenclauture has to be as in library)
+## Column headers needed: File, LipidClass, LipidSpecies, Adduct, Label, CCS (LipidClass and LipidSpecies nomenclauture has to be as in library)
 if (!(exists("data_import"))) {
   data_import <- tk_choose.files(caption = "Data import (measured data as CSV file):", multi = FALSE, filters = matrix(c("csv files", "csv"), 1, 2))
   filename <- basename(data_import)
@@ -95,8 +95,7 @@ CCS_bias_plot <-
   theme(legend.position = "none", text = element_text(size = 14))
 
 results <- list()
-report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "IMS_value", "CCS", "U13C_DTCCS", "CCS_bias")]
-report_bias[,IMS_value := round(IMS_value, digits = 2)]
+report_bias <- report_bias[,c("File", "LipidClass", "LipidSpecies", "Polarity", "Adduct", "Label", "Formula", "CCS", "U13C_DTCCS", "CCS_bias")]
 report_bias[,CCS := round(CCS, digits = 2)]
 report_bias[,CCS_bias := round(CCS_bias, digits = 2)]
 
@@ -104,7 +103,7 @@ fwrite(report_bias, file = paste0(folder_path_new, "/CCS_bias_no_correction_",fi
 
 results[["File"]] <- report_bias[,unique(File)]
 
-report_bias <- report_bias[, c("LipidClass","LipidSpecies","Adduct","IMS_value","CCS","U13C_DTCCS","CCS_bias")]
+report_bias <- report_bias[, c("LipidClass","LipidSpecies","Adduct","CCS","U13C_DTCCS","CCS_bias")]
 results[["CCS_bias"]][["dt_CCS_bias"]] <- report_bias
 
 results[["CCS_bias"]][["plot_CCS_bias"]] <- CCS_bias_plot
