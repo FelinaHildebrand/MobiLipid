@@ -17,8 +17,28 @@ implementation of CCS bias calculation and correction.
 MobiLipid is a R markdown enabling CCS quality control for IM-MS
 lipidomics by internal standardization. For utilizing the MobiLipid
 workflow samples measured with (LC-)IM-MS have to be spiked with
-U<sup>13</sup>C labeled internal standards (fully labeled yeast extract
-([Neubauer et al. 2012](#ref-neubauer13CellExtract2012)))
+U<sup>13</sup>C labeled internal standards (fully labeled yeast
+extract,<sup>[1](#ref-neubauer2012)</sup>). Subsequently, it is possible
+to utilize the <sup>DT</sup>CCS<sub>N2</sub> library for U<sup>13</sup>C
+labeled lipids (provided together with the code and publication) to
+first calculate CCS bias between measured CCS values and library values
+of U<sup>13</sup>C labeled lipids. Additionally, MobiLipid allows for
+the correction of CCS values by computing correction function for each
+lipid class-adduct combinations (possible combinations are listed in the
+table below). CCS correction functions are based on linear regression
+functions which require a minimum of 3 lipids within a lipid
+class-adduct combination which restricts the CCS correction to the
+following lipid classes: Cer, DG, HexCer, LPC, PA, PC, PE, PI, PS, and
+TG. MobiLipid computes up to 100 distinct correction functions employing
+3 to 6 lipids of a lipid class-adduct combination for linear regression.
+Input values for linear regression using the equation
+*y* = *m* \* *x* + *b* are measured CCS values of U<sup>13</sup>C
+labeled lipids as x value and <sup>DT</sup>CCS<sub>N2</sub> library
+values as y value. After generation of all CCS correction functions, all
+measured CCS values are corrected, irrespective of their labeling
+status. To monitor the result of CCS correction, the bias between
+corrected CCS values and <sup>DT</sup>CCS<sub>N2</sub> library values of
+U<sup>13</sup>C labeled lipids is calculated.
 
 ## Necessary installations
 
@@ -49,7 +69,7 @@ MobiLipid (“MobiLipid_CCS-bias-calculation.Rmd” and/or
 “MobiLipid_CCS-bias-calculation_CCS-correction.Rmd”) as well as the .csv
 file of the <sup>DT</sup>CCS<sub>N2</sub> library for U<sup>13</sup>C
 labeled lipids of yeast (“U13C_DT_CCS_library.csv”) is downloaded. This
-can be done by downloading the entire GitHup repository as a .zip file
+can be done by downloading the entire GitHub repository as a .zip file
 and unzip the files.
 
 ## Running MobiLipid
@@ -179,14 +199,14 @@ first 10 rows for all tables are displayed). Additionally, the following
 ## Citation
 
 Please cite the following publication if you use MobiLipid in your
-workfolw:
+workflow:
 
-Neubauer, Stefan, Christina Haberhauer‐Troyer, Kristaps Klavins, Hannes
-Russmayer, Matthias G. Steiger, Brigitte Gasser, Michael Sauer, Diethard
-Mattanovich, Stephan Hann, and Gunda Koellensperger. 2012.
-“<span class="smallcaps">U</span> <sup>13</sup>
-<span class="smallcaps">C</span> Cell Extract of
-<span class="smallcaps">P</span> Ichia Pastoris – a Powerful Tool for
-Evaluation of Sample Preparation in Metabolomics.” *Journal of
-Separation Science* 35 (22): 3091–3105.
-<https://doi.org/10.1002/jssc.201200447>.
+## References
+
+<span class="csl-left-margin">(1)
+</span><span class="csl-right-inline">Neubauer, S.; Haberhauer-Troyer,
+C.; Klavins, K.; Russmayer, H.; Steiger, M. G.; Gasser, B.; Sauer, M.;
+Mattanovich, D.; Hann, S.; Koellensperger, G. U <sup>13</sup> C Cell
+Extract of P Ichia Pastoris a Powerful Tool for Evaluation of Sample
+Preparation in Metabolomics. *Journal of Separation Science* **2012**,
+*35* (22), 3091–3105. <https://doi.org/10.1002/jssc.201200447>.</span>
