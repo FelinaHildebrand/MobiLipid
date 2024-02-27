@@ -1,5 +1,5 @@
 ---
-title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization"
+title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization"
 output:
   html_document: 
     toc: true
