@@ -58,15 +58,34 @@ Finally, MobiLipid can be run. Therefore, paste the code below into the console 
     This needs to be a .csv file containing the measured data. The .csv file has to have the following headers: "File", "LipidClass", "LipidSpecies", "Adduct", "Label", "IMS_value", "CCS" (an exemplary file is provided: "*Example_data_import.csv*")
 
     -   **File**: File name of the measurement file
+
     -   **LipidClass**: Lipid class (ensure to use the same nomenclature as used for the ^DT^CCS~N2~ library)
+
     -   **LipidSpecies**: Lipid species on lipid species level (ensure to use the same nomenclature as used for the ^DT^CCS~N2~ library)
+
     -   **Adduct**: The following adducts are possible: [M+H], [M+NH~4~], [M+Na], [M-H], and [M+HCOO]. Not all adducts can be used for each lipid class. The table below shows the possible lipid class-adduct combinations:
 
-    ```{r, include=TRUE, eval=TRUE, echo=FALSE}
-    class_adduct <- data.table::data.table("Lipid class" = c("AcCa", "Cer", "Co", "DG", "HexCer", "LPC", "LPE", "PA", "PC", "PE", "PG", "PI", "PS", "SPH", "TG"), "Adduct" = c("[M+H], [M-H]", "[M+H], [M+Na], [M+HCOO]", "[M+NH4], [M+Na]", "[M+NH4], [M+Na]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M-H]", "[M+NH4], [M+Na], [M-H]", "[M+H], [M+Na], [M+HCOO]", "[M+H], [M+Na], [M-H]", "[M+NH4], [M-H]", "[M+NH4], [M+Na], [M-H]", "[M+H], [M+Na], [M-H]", "[M+H]", "[M+NH4], [M+Na]"))
-    knitr::kable(class_adduct)
-    ```
+        | Lipid class | Adducts                 |
+        |-------------|-------------------------|
+        | AcCa        | [M+H], [M-H]            |
+        | Cer         | [M+H], [M+Na], [M+HCOO] |
+        | Co          | [M+NH4], [M+Na]         |
+        | DG          | [M+NH4], [M+Na]         |
+        | HexCer      | [M+H], [M+Na], [M+HCOO] |
+        | LPC         | [M+H], [M+Na], [M+HCOO] |
+        | LPE         | [M+H], [M-H]            |
+        | PA          | [M+NH4], [M+Na], [M-H]  |
+        | PC          | [M+H], [M+Na], [M+HCOO] |
+        | PE          | [M+H], [M+Na], [M-H]    |
+        | PG          | [M+NH4], [M-H]          |
+        | PI          | [M+NH4], [M+Na], [M-H]  |
+        | PS          | [M+H], [M+Na], [M-H]    |
+        | SPH         | [M+H]                   |
+        | TG          | [M+NH4], [M+Na]         |
 
+    ```{=html}
+    <!-- -->
+    ```
     -   **Label**: "light" for natural lipids and "heavy" for U^13^C labeled lipids
     -   **IMS_value**: Measured mobility (e.g. 1/K~0~ for TIMS)
     -   **CCS**: Measured CCS value
@@ -104,7 +123,35 @@ rmarkdown::render(
 
 ## Output
 
-As output MobiLipid generates a .html and a.pdf file with all data for CCS bias calculation and correction. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed). Additionally, the following .csv files are generated:
+As output MobiLipid generates a .html and a.pdf file with all data of CCS bias calculation and correction. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed). Following results are summarized in the output (e.g. for PC, [M+H]):
+
+-   Number of lipids detected in the lipid class-adduct combination and if CCS correction was possible
+
+    ![](Output_pictures/Output_1.jpg){width="185"}
+
+-   Summary of resampling results to set up distinct correction functions
+
+    ![](Output_pictures/Output_2.jpg){width="446"}
+
+-   Summary of all generated correction functions by number of U^13^C labeled lipids used for generating them
+
+    ![](Output_pictures/Output_3.jpg)
+
+-   Mean CCS bias before and after CCS correction for a lipid class-adduct combination over all correction functions by number of U^13^C labeled lipids used for generating them and for each correction function
+
+    ![](Output_pictures/Output_4.jpg)
+
+-   Violin plots visualizing the CCS bias before and after CCS correction by number of U^13^C labeled lipids used for generating the correction functions
+
+    ![](Output_pictures/Output_5.jpg)
+
+    ![](Output_pictures/Output_6.jpg)
+
+-   At the end of each lipid class-adduct combination there is a summary plot visualizing the CCS bias before and after correction for each number of U^13^C labeled lipids used for generating the correction functions
+
+    ![](Output_pictures/Output_7.jpg)
+
+Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed). Additionally, the following .csv files are generated:
 
 -   **CCS bias calculation:**
 

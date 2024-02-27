@@ -18,28 +18,28 @@ MobiLipid is a R markdown enabling CCS quality control for IM-MS
 lipidomics by internal standardization. For utilizing the MobiLipid
 workflow samples measured with (LC-)IM-MS have to be spiked with
 U<sup>13</sup>C labeled internal standards (fully labeled yeast
-extract<sup>[1](#ref-neubauer2012)</sup>). Subsequently, it is possible
-to utilize the <sup>DT</sup>CCS<sub>N2</sub> library for U<sup>13</sup>C
-labeled lipids (provided together with the code and publication) to
-first calculate CCS bias between measured CCS values and library values
-of U<sup>13</sup>C labeled lipids. Additionally, MobiLipid allows for
-the correction of CCS values by computing correction function for each
-lipid class-adduct combinations (possible combinations are listed in the
-table below, see [Running MobiLipid](#running-mobilipid)). CCS
-correction functions are based on linear regression functions which
-require a minimum of 3 lipids within a lipid class-adduct combination
-which restricts the CCS correction to the following lipid classes: Cer,
-DG, HexCer, LPC, PA, PC, PE, PI, PS, and TG. MobiLipid computes up to
-100 distinct correction functions employing 3 to 6 lipids of a lipid
-class-adduct combination for linear regression. Input values for linear
-regression using the equation *y* = *m* \* *x* + *b* are measured CCS
-values of U<sup>13</sup>C labeled lipids as x value and
-<sup>DT</sup>CCS<sub>N2</sub> library values as y value. After
-generation of all CCS correction functions, all measured CCS values are
-corrected, irrespective of their labeling status. To monitor the result
-of CCS correction, the bias between corrected CCS values and
-<sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C labeled
-lipids is calculated.
+extract<sup>[**neubauer2012?**](#ref-neubauer2012)</sup>). Subsequently,
+it is possible to utilize the <sup>DT</sup>CCS<sub>N2</sub> library for
+U<sup>13</sup>C labeled lipids (provided together with the code and
+publication) to first calculate CCS bias between measured CCS values and
+library values of U<sup>13</sup>C labeled lipids. Additionally,
+MobiLipid allows for the correction of CCS values by computing
+correction function for each lipid class-adduct combinations (possible
+combinations are listed in the table below, see [Running
+MobiLipid](#running-mobilipid)). CCS correction functions are based on
+linear regression functions which require a minimum of 3 lipids within a
+lipid class-adduct combination which restricts the CCS correction to the
+following lipid classes: Cer, DG, HexCer, LPC, PA, PC, PE, PI, PS, and
+TG. MobiLipid computes up to 100 distinct correction functions employing
+3 to 6 lipids of a lipid class-adduct combination for linear regression.
+Input values for linear regression using the equation
+*y* = *m* \* *x* + *b* are measured CCS values of U<sup>13</sup>C
+labeled lipids as x value and <sup>DT</sup>CCS<sub>N2</sub> library
+values as y value. After generation of all CCS correction functions, all
+measured CCS values are corrected, irrespective of their labeling
+status. To monitor the result of CCS correction, the bias between
+corrected CCS values and <sup>DT</sup>CCS<sub>N2</sub> library values of
+U<sup>13</sup>C labeled lipids is calculated.
 
 ## Citation
 
@@ -105,33 +105,38 @@ might open behind the main window of R studio):
     file is provided: “*Example_data_import.csv*”)
 
     -   **File**: File name of the measurement file
+
     -   **LipidClass**: Lipid class (ensure to use the same nomenclature
         as used for the <sup>DT</sup>CCS<sub>N2</sub> library)
+
     -   **LipidSpecies**: Lipid species on lipid species level (ensure
         to use the same nomenclature as used for the
         <sup>DT</sup>CCS<sub>N2</sub> library)
+
     -   **Adduct**: The following adducts are possible: \[M+H\],
         \[M+NH<sub>4</sub>\], \[M+Na\], \[M-H\], and \[M+HCOO\]. Not all
         adducts can be used for each lipid class. The table below shows
         the possible lipid class-adduct combinations:
 
-    | Lipid class | Adduct                        |
-    |:------------|:------------------------------|
-    | AcCa        | \[M+H\], \[M-H\]              |
-    | Cer         | \[M+H\], \[M+Na\], \[M+HCOO\] |
-    | Co          | \[M+NH4\], \[M+Na\]           |
-    | DG          | \[M+NH4\], \[M+Na\]           |
-    | HexCer      | \[M+H\], \[M+Na\], \[M+HCOO\] |
-    | LPC         | \[M+H\], \[M+Na\], \[M+HCOO\] |
-    | LPE         | \[M+H\], \[M-H\]              |
-    | PA          | \[M+NH4\], \[M+Na\], \[M-H\]  |
-    | PC          | \[M+H\], \[M+Na\], \[M+HCOO\] |
-    | PE          | \[M+H\], \[M+Na\], \[M-H\]    |
-    | PG          | \[M+NH4\], \[M-H\]            |
-    | PI          | \[M+NH4\], \[M+Na\], \[M-H\]  |
-    | PS          | \[M+H\], \[M+Na\], \[M-H\]    |
-    | SPH         | \[M+H\]                       |
-    | TG          | \[M+NH4\], \[M+Na\]           |
+        | Lipid class | Adducts                       |
+        |-------------|-------------------------------|
+        | AcCa        | \[M+H\], \[M-H\]              |
+        | Cer         | \[M+H\], \[M+Na\], \[M+HCOO\] |
+        | Co          | \[M+NH4\], \[M+Na\]           |
+        | DG          | \[M+NH4\], \[M+Na\]           |
+        | HexCer      | \[M+H\], \[M+Na\], \[M+HCOO\] |
+        | LPC         | \[M+H\], \[M+Na\], \[M+HCOO\] |
+        | LPE         | \[M+H\], \[M-H\]              |
+        | PA          | \[M+NH4\], \[M+Na\], \[M-H\]  |
+        | PC          | \[M+H\], \[M+Na\], \[M+HCOO\] |
+        | PE          | \[M+H\], \[M+Na\], \[M-H\]    |
+        | PG          | \[M+NH4\], \[M-H\]            |
+        | PI          | \[M+NH4\], \[M+Na\], \[M-H\]  |
+        | PS          | \[M+H\], \[M+Na\], \[M-H\]    |
+        | SPH         | \[M+H\]                       |
+        | TG          | \[M+NH4\], \[M+Na\]           |
+
+    <!-- -->
 
     -   **Label**: “light” for natural lipids and “heavy” for
         U<sup>13</sup>C labeled lipids
@@ -173,7 +178,49 @@ rmarkdown::render(
 
 ## Output
 
-As output MobiLipid generates a .html and a.pdf file with all data.
+As output MobiLipid generates a .html and a.pdf file with all data of
+CCS bias calculation and correction. Tables have to be accessed via the
+.html file (in the .pdf file only the first 10 rows for all tables are
+displayed). Following results are summarized in the output (e.g. for PC,
+\[M+H\]):
+
+-   Number of lipids detected in the lipid class-adduct combination and
+    if CCS correction was possible
+
+    <img src="Output_pictures/Output_1.jpg" width="185" />
+
+-   Summary of resampling results to set up distinct correction
+    functions
+
+    <img src="Output_pictures/Output_2.jpg" width="446" />
+
+-   Summary of all generated correction functions by number of
+    U<sup>13</sup>C labeled lipids used for generating them
+
+    ![](Output_pictures/Output_3.jpg)
+
+-   Mean CCS bias before and after CCS correction for a lipid
+    class-adduct combination over all correction functions by number of
+    U<sup>13</sup>C labeled lipids used for generating them and for each
+    correction function
+
+    ![](Output_pictures/Output_4.jpg)
+
+-   Violin plots visualizing the CCS bias before and after CCS
+    correction by number of U<sup>13</sup>C labeled lipids used for
+    generating the correction functions
+
+    ![](Output_pictures/Output_5.jpg)
+
+    ![](Output_pictures/Output_6.jpg)
+
+-   At the end of each lipid class-adduct combination there is a summary
+    plot visualizing the CCS bias before and after correction for each
+    number of U<sup>13</sup>C labeled lipids used for generating the
+    correction functions
+
+    ![](Output_pictures/Output_7.jpg)
+
 Tables have to be accessed via the .html file (in the .pdf file only the
 first 10 rows for all tables are displayed). Additionally, the following
 .csv files are generated:
@@ -203,11 +250,3 @@ first 10 rows for all tables are displayed). Additionally, the following
     the function (starting with: “Corrected_CCS_values_mean”)
 
 ## References
-
-<span class="csl-left-margin">(1)
-</span><span class="csl-right-inline">Neubauer, S.; Haberhauer-Troyer,
-C.; Klavins, K.; Russmayer, H.; Steiger, M. G.; Gasser, B.; Sauer, M.;
-Mattanovich, D.; Hann, S.; Koellensperger, G. U <sup>13</sup> C Cell
-Extract of P Ichia Pastoris a Powerful Tool for Evaluation of Sample
-Preparation in Metabolomics. *Journal of Separation Science* **2012**,
-*35* (22), 3091–3105. <https://doi.org/10.1002/jssc.201200447>.</span>
