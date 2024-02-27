@@ -1,5 +1,5 @@
 ---
-title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics Workflows by Internal Standardization"
+title: "MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization"
 output:
   html_document: 
     toc: true
@@ -185,7 +185,7 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
       # correction functions for resampled data
       correction_function_dt <- data.table(function_nr = numeric(0),slope = numeric(0),intercept = numeric(0),Rsquared = numeric(0))
       correction_function_dt <- lapply(1:n, function(i) {
-        correction_func <- lm(U13C_DTCCS ~ IMS_value, data = dt_class_heavy[LipidSpecies %in% resampled_results[[i]]])
+        correction_func <- lm(U13C_DTCCS ~ CCS, data = dt_class_heavy[LipidSpecies %in% resampled_results[[i]]])
         new_row <- data.table(function_nr = i, slope = correction_func$coefficients[2], intercept = correction_func$coefficients[1], Rsquared = summary(correction_func)$r.squared)
         return(new_row)
       })
@@ -209,7 +209,7 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
         subset[, slope := correction_function_dt[function_nr == i, slope]]
         subset[, intercept := correction_function_dt[function_nr == i, intercept]]
         subset[, Rsquared := correction_function_dt[function_nr == i, Rsquared]]
-        subset[, CCS_corrected := (slope * IMS_value) + intercept]
+        subset[, CCS_corrected := (slope * CCS) + intercept]
       })
       dt_class_correction <- rbindlist(dt_class_correction)
       
@@ -227,7 +227,7 @@ results_correction <- lapply(1:nrow(class_adduct_combination), function(k) {
       
       correction_results <- copy(dt_class_correction_long)
       correction_results <- correction_results[variable == "CCS_bias_corrected"]
-      correction_results <- correction_results[, c("LipidClass", "LipidSpecies", "Adduct", "Label", "Number_lipids_correction_function", "function_nr", "CCS_corrected")]
+      correction_results <- correction_results[, c("LipidClass", "LipidSpecies", "Adduct", "Label", "Number_lipids_correction_function", "function_nr", "CCS_corrected", "CCS_bias")]
       colnames(correction_results)[colnames(correction_results) == "Number_lipids_correction_function"] <- "Lipids_for_correction"
       
       correction_results <- correction_results[complete.cases(CCS_corrected)]
@@ -467,7 +467,7 @@ invisible(lapply(3:length(results), function(i) {
       cat(results[[i]][[paste0(x)]][["duplicates_resampled_data"]],"  \n")
       
       cat("\n####", "Correction functions", "  \n")
-      cat("x = IMS value","  \n", "y = ^DT^CCS~N2~ of U^13^C labeled lipid", "  \n")
+      cat("y = m * x + b","  \n" ,"Input:","  \n","x = Measured CCS of U^13^C labeled lipid","  \n", "y = ^DT^CCS~N2~ of U^13^C labeled lipid", "  \n")
       print(htmltools::tagList(datatable(results[[i]][[paste0(x)]][["correction_functions_dt"]], rownames = FALSE)))
       
       cat("\n####", "CCS bias", "  \n")
