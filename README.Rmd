@@ -3,10 +3,17 @@ title: "MobiLipid"
 output:   
   md_document:
     variant: markdown_github
-bibliography: MobiLipid.bib
+bibliography: README.bib
 link-citations: true
 #csl: analytical-chemistry.csl
 ---
+
+```{r generateBibliography, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+require("knitcitations")
+cleanbib()
+options("citation_format" = "pandoc")
+read.bibtex(file = "README.bib")
+```
 
 # MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization
 
