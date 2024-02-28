@@ -1,10 +1,3 @@
-    ## [1] S. Neubauer, C. Haberhauer-Troyer, K. Klavins, et al. "\textscU
-    ## \textsuperscript13 \textscC Cell Extract of \textscP Ichia Pastoris - a
-    ## Powerful Tool for Evaluation of Sample Preparation in Metabolomics".
-    ## In: _Journal of Separation Science_ 35.22 (Nov. 2012), pp. 3091-3105.
-    ## ISSN: 1615-9306, 1615-9314. DOI: 10.1002/jssc.201200447. (Visited on
-    ## 01/03/2024).
-
 # MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization
 
 MobiLipid aims to streamline lipidomics workflows by offering a fully
