@@ -4,11 +4,7 @@ output:
   md_document:
     variant: markdown_github
 bibliography: README.bib
-link-citations: true
-#csl: analytical-chemistry.csl
 ---
-
-
 
 # MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization
 
