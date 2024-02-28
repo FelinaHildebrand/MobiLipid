@@ -5,7 +5,7 @@ output:
     variant: markdown_github
 bibliography: MobiLipid.bib
 link-citations: true
-csl: analytical-chemistry.csl
+#csl: analytical-chemistry.csl
 ---
 
 # MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization
@@ -14,7 +14,7 @@ MobiLipid aims to streamline lipidomics workflows by offering a fully automated 
 
 ## Introduction to MobiLipid
 
-MobiLipid is a R markdown enabling CCS quality control for IM-MS lipidomics by internal standardization. For utilizing the MobiLipid workflow samples measured with (LC-)IM-MS have to be spiked with U^13^C labeled internal standards (fully labeled yeast extract [@neubauer2012]). Subsequently, it is possible to utilize the ^DT^CCS~N2~ library for U^13^C labeled lipids (provided together with the code and publication) to first calculate CCS bias between measured CCS values and library values of U^13^C labeled lipids. Additionally, MobiLipid allows for the correction of CCS values by computing correction function for each lipid class-adduct combinations (possible combinations are listed in the table below, see [Running MobiLipid]). CCS correction functions are based on linear regression functions which require a minimum of 3 lipids within a lipid class-adduct combination which restricts the CCS correction to the following lipid classes: Cer, DG, HexCer, LPC, PA, PC, PE, PI, PS, and TG. MobiLipid computes up to 100 distinct correction functions employing 3 to 6 lipids of a lipid class-adduct combination for linear regression. Input values for linear regression using the equation $y = m * x + b$ are measured CCS values of U^13^C labeled lipids as x value and ^DT^CCS~N2~ library values as y value. After generation of all CCS correction functions, all measured CCS values are corrected, irrespective of their labeling status. To monitor the result of CCS correction, the bias between corrected CCS values and ^DT^CCS~N2~ library values of U^13^C labeled lipids is calculated.
+MobiLipid is a R markdown enabling CCS quality control for IM-MS lipidomics by internal standardization. For utilizing the MobiLipid workflow samples measured with (LC-)IM-MS have to be spiked with U^13^C labeled internal standards (fully labeled yeast extract [@neubauer13CellExtract2012]). Subsequently, it is possible to utilize the ^DT^CCS~N2~ library for U^13^C labeled lipids (provided together with the code and publication) to first calculate CCS bias between measured CCS values and library values of U^13^C labeled lipids. Additionally, MobiLipid allows for the correction of CCS values by computing correction function for each lipid class-adduct combinations (possible combinations are listed in the table below, see [Running MobiLipid]). CCS correction functions are based on linear regression functions which require a minimum of 3 lipids within a lipid class-adduct combination which restricts the CCS correction to the following lipid classes: Cer, DG, HexCer, LPC, PA, PC, PE, PI, PS, and TG. MobiLipid computes up to 100 distinct correction functions employing 3 to 6 lipids of a lipid class-adduct combination for linear regression. Input values for linear regression using the equation $y = m * x + b$ are measured CCS values of U^13^C labeled lipids as x value and ^DT^CCS~N2~ library values as y value. After generation of all CCS correction functions, all measured CCS values are corrected, irrespective of their labeling status. To monitor the result of CCS correction, the bias between corrected CCS values and ^DT^CCS~N2~ library values of U^13^C labeled lipids is calculated.
 
 ## Citation
 
@@ -121,33 +121,39 @@ rmarkdown::render(
 
 ## Output
 
-As output MobiLipid generates a .html and a.pdf file with all data of CCS bias calculation and correction. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed). Following results are summarized in the output (e.g. for PC, [M+H]):
+As output MobiLipid generates a .html and a .pdf file with all data of CCS bias calculation and correction. Tables have to be accessed via the .html file (in the .pdf file only the first 10 rows for all tables are displayed). Following results are summarized in the output (e.g. for PC, [M+H], 3 lipids for linear regression):
+
+-   CCS bias calculation without CCS correction
+
+    ![](Output_figures/Output_CCS_bias_table.jpg)
+
+    ![](Output_figures/Output_CCS_bias_figure.jpg)
 
 -   Number of lipids detected in the lipid class-adduct combination and if CCS correction was possible
 
-    ![](Output_pictures/Output_1.jpg){width="185"}
+    ![](Output_figures/Output_Number_Lipids.jpg)
 
 -   Summary of resampling results to set up distinct correction functions
 
-    ![](Output_pictures/Output_2.jpg){width="595"}
+    ![](Output_figures/Output_Resampling.jpg)
 
 -   Summary of all generated correction functions by number of U^13^C labeled lipids used for generating them
 
-    ![](Output_pictures/Output_3.jpg)
+    ![](Output_figures/Output_Correction_functions.jpg)
 
 -   Mean CCS bias before and after CCS correction for a lipid class-adduct combination over all correction functions by number of U^13^C labeled lipids used for generating them and for each correction function
 
-    ![](Output_pictures/Output_4.jpg)
+    ![](Output_figures/Output_CCS_bias_after_correction.jpg)
 
 -   Violin plots visualizing the CCS bias before and after CCS correction by number of U^13^C labeled lipids used for generating the correction functions
 
-    ![](Output_pictures/Output_5.jpg)
+    ![](Output_figures/Output_Violin_plot_1.jpg)
 
-    ![](Output_pictures/Output_6.jpg)
+    ![]()![](Output_figures/Output_Violin_plot_2.jpg)
 
 -   At the end of each lipid class-adduct combination there is a summary over the CCS bias before and after correction for each number of U^13^C labeled lipids used for generating the correction functions
 
-    ![](Output_pictures/Output_7.jpg)
+    ![](Output_figures/Output_CCS_bias_after_correction_all_results.jpg)
 
 Additionally, a .RData file is saved storing all results as a list which can be opened within R studio (`readRDS()`) and the following .csv files are generated:
 

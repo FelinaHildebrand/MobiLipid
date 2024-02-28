@@ -17,23 +17,24 @@ implementation of CCS bias calculation and correction.
 MobiLipid is a R markdown enabling CCS quality control for IM-MS
 lipidomics by internal standardization. For utilizing the MobiLipid
 workflow samples measured with (LC-)IM-MS have to be spiked with
-U<sup>13</sup>C labeled internal standards (fully labeled yeast
-extract<sup>[1](#ref-neubauer2012)</sup>). Subsequently, it is possible
-to utilize the <sup>DT</sup>CCS<sub>N2</sub> library for U<sup>13</sup>C
-labeled lipids (provided together with the code and publication) to
-first calculate CCS bias between measured CCS values and library values
-of U<sup>13</sup>C labeled lipids. Additionally, MobiLipid allows for
-the correction of CCS values by computing correction function for each
-lipid class-adduct combinations (possible combinations are listed in the
-table below, see [Running MobiLipid](#running-mobilipid)). CCS
-correction functions are based on linear regression functions which
-require a minimum of 3 lipids within a lipid class-adduct combination
-which restricts the CCS correction to the following lipid classes: Cer,
-DG, HexCer, LPC, PA, PC, PE, PI, PS, and TG. MobiLipid computes up to
-100 distinct correction functions employing 3 to 6 lipids of a lipid
-class-adduct combination for linear regression. Input values for linear
-regression using the equation *y* = *m* \* *x* + *b* are measured CCS
-values of U<sup>13</sup>C labeled lipids as x value and
+U<sup>13</sup>C labeled internal standards (fully labeled yeast extract
+([**neubauer13CellExtract2012?**](#ref-neubauer13CellExtract2012))).
+Subsequently, it is possible to utilize the
+<sup>DT</sup>CCS<sub>N2</sub> library for U<sup>13</sup>C labeled lipids
+(provided together with the code and publication) to first calculate CCS
+bias between measured CCS values and library values of U<sup>13</sup>C
+labeled lipids. Additionally, MobiLipid allows for the correction of CCS
+values by computing correction function for each lipid class-adduct
+combinations (possible combinations are listed in the table below, see
+[Running MobiLipid](#running-mobilipid)). CCS correction functions are
+based on linear regression functions which require a minimum of 3 lipids
+within a lipid class-adduct combination which restricts the CCS
+correction to the following lipid classes: Cer, DG, HexCer, LPC, PA, PC,
+PE, PI, PS, and TG. MobiLipid computes up to 100 distinct correction
+functions employing 3 to 6 lipids of a lipid class-adduct combination
+for linear regression. Input values for linear regression using the
+equation *y* = *m* \* *x* + *b* are measured CCS values of
+U<sup>13</sup>C labeled lipids as x value and
 <sup>DT</sup>CCS<sub>N2</sub> library values as y value. After
 generation of all CCS correction functions, all measured CCS values are
 corrected, irrespective of their labeling status. To monitor the result
@@ -177,48 +178,54 @@ rmarkdown::render(
 
 ## Output
 
-As output MobiLipid generates a .html and a.pdf file with all data of
+As output MobiLipid generates a .html and a .pdf file with all data of
 CCS bias calculation and correction. Tables have to be accessed via the
 .html file (in the .pdf file only the first 10 rows for all tables are
 displayed). Following results are summarized in the output (e.g. for PC,
-\[M+H\]):
+\[M+H\], 3 lipids for linear regression):
+
+-   CCS bias calculation without CCS correction
+
+    ![](Output_figures/Output_CCS_bias_table.jpg)
+
+    ![](Output_figures/Output_CCS_bias_figure.jpg)
 
 -   Number of lipids detected in the lipid class-adduct combination and
     if CCS correction was possible
 
-    <img src="Output_pictures/Output_1.jpg" width="185" />
+    ![](Output_figures/Output_Number_Lipids.jpg)
 
 -   Summary of resampling results to set up distinct correction
     functions
 
-    <img src="Output_pictures/Output_2.jpg" width="595" />
+    ![](Output_figures/Output_Resampling.jpg)
 
 -   Summary of all generated correction functions by number of
     U<sup>13</sup>C labeled lipids used for generating them
 
-    ![](Output_pictures/Output_3.jpg)
+    ![](Output_figures/Output_Correction_functions.jpg)
 
 -   Mean CCS bias before and after CCS correction for a lipid
     class-adduct combination over all correction functions by number of
     U<sup>13</sup>C labeled lipids used for generating them and for each
     correction function
 
-    ![](Output_pictures/Output_4.jpg)
+    ![](Output_figures/Output_CCS_bias_after_correction.jpg)
 
 -   Violin plots visualizing the CCS bias before and after CCS
     correction by number of U<sup>13</sup>C labeled lipids used for
     generating the correction functions
 
-    ![](Output_pictures/Output_5.jpg)
+    ![](Output_figures/Output_Violin_plot_1.jpg)
 
-    ![](Output_pictures/Output_6.jpg)
+    ![]()![](Output_figures/Output_Violin_plot_2.jpg)
 
 -   At the end of each lipid class-adduct combination there is a summary
     over the CCS bias before and after correction for each number of
     U<sup>13</sup>C labeled lipids used for generating the correction
     functions
 
-    ![](Output_pictures/Output_7.jpg)
+    ![](Output_figures/Output_CCS_bias_after_correction_all_results.jpg)
 
 Additionally, a .RData file is saved storing all results as a list which
 can be opened within R studio (`readRDS()`) and the following .csv files
@@ -245,11 +252,3 @@ are generated:
     lipids used to generate the function
 
 ## References
-
-<span class="csl-left-margin">(1)
-</span><span class="csl-right-inline">Neubauer, S.; Haberhauer-Troyer,
-C.; Klavins, K.; Russmayer, H.; Steiger, M. G.; Gasser, B.; Sauer, M.;
-Mattanovich, D.; Hann, S.; Koellensperger, G. U <sup>13</sup> C Cell
-Extract of P Ichia Pastoris a Powerful Tool for Evaluation of Sample
-Preparation in Metabolomics. *Journal of Separation Science* **2012**,
-*35* (22), 3091–3105. <https://doi.org/10.1002/jssc.201200447>.</span>
