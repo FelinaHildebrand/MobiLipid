@@ -12,6 +12,8 @@ Markdown that integrates into IM-MS lipidomics workflows, requiring a
 low number of lipids detected per lipid class for effective
 implementation of CCS bias calculation and correction.
 
+<img src="images/MobiLipid_Logo_whiteBackground@300x.png" width="595" />
+
 ## Introduction to MobiLipid
 
 MobiLipid is a R markdown enabling CCS quality control for IM-MS
