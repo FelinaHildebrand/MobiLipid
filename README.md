@@ -1,3 +1,5 @@
+![](images/MobiLipid_Logo_whiteBackground@300x.png)
+
 # MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization
 
 MobiLipid aims to streamline lipidomics workflows by offering a fully
@@ -11,8 +13,6 @@ standardization. Our tool enhances CCS quality control by providing a R
 Markdown that integrates into IM-MS lipidomics workflows, requiring a
 low number of lipids detected per lipid class for effective
 implementation of CCS bias calculation and correction.
-
-<img src="images/MobiLipid_Logo_whiteBackground@300x.png" width="595" />
 
 ## Introduction to MobiLipid
 
