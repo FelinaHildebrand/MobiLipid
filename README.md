@@ -1,4 +1,6 @@
-![](images/MobiLipid_Logo_whiteBackground@300x.png)
+<center>
+<img src="images/MobiLipid_Logo_whiteBackground@300x.png" width="375" />
+</center>
 
 # MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization
 
