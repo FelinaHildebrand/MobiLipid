@@ -2,7 +2,7 @@
 <img src="images/MobiLipid_Logo_whiteBackground@300x.png" width="400" />
 </p>
 
-# MobiLipid: A Tool for Enhancing CCS Quality Control of IM-MS Lipidomics by Internal Standardization
+# MobiLipid: A Tool for Enhancing CCS Quality Control of Ion Mobility-Mass Spectrometry Lipidomics by Internal Standardization
 
 MobiLipid aims to streamline lipidomics workflows by offering a fully
 automated solution for assessing and correcting collision cross section
