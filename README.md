@@ -45,11 +45,6 @@ of CCS correction, the bias between corrected CCS values and
 <sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C labeled
 lipids is calculated.
 
-## Citation
-
-Please cite the following publication if you use MobiLipid in your
-workflow:
-
 ## Necessary installations
 
 To run MobiLipid it is necessary to install
