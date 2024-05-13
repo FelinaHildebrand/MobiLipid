@@ -45,6 +45,15 @@ of CCS correction, the bias between corrected CCS values and
 <sup>DT</sup>CCS<sub>N2</sub> library values of U<sup>13</sup>C labeled
 lipids is calculated.
 
+## Cite MobiLipid
+
+Please cite the following publication if you use MobiLipid in your
+workflow: Hildebrand, Felina; Koellensperger, Gunda; Causon, Tim.
+MobiLipid: A Tool for Enhancing CCS Quality Control of Ion Mobility–Mass
+Spectrometry Lipidomics by Internal Standardization. *Anal. Chem.*
+***2024***, acs.analchem.4c01253.
+<https://doi.org/10.1021/acs.analchem.4c01253>.
+
 ## Necessary installations
 
 To run MobiLipid it is necessary to install
