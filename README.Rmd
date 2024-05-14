@@ -21,7 +21,7 @@ MobiLipid is a R markdown enabling CCS quality control for IM-MS lipidomics by i
 ## Cite MobiLipid
 
 Please cite the following publication if you use MobiLipid in your workflow:
-Hildebrand, Felina; Koellensperger, Gunda; Causon, Tim. MobiLipid: A Tool for Enhancing CCS Quality Control of Ion Mobility–Mass Spectrometry Lipidomics by Internal Standardization. *Anal. Chem.* ***2024***, acs.analchem.4c01253. https://doi.org/10.1021/acs.analchem.4c01253.
+Hildebrand, Felina; Koellensperger, Gunda; Causon, Tim. MobiLipid: A Tool for Enhancing CCS Quality Control of Ion Mobility–Mass Spectrometry Lipidomics by Internal Standardization. *Anal. Chem.* ***2024***, *96* (19), 7380–7385. https://doi.org/10.1021/acs.analchem.4c01253.
 
 
 ## Necessary installations
